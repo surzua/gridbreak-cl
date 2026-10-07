@@ -1,0 +1,42 @@
+# Configuración general del proyecto Gridbreak Chile
+project:
+  name: "gridbreak-cl"
+  version: "0.1.0"
+  region: "Región Metropolitana de Santiago"
+  crs_default: "EPSG:4326"
+  crs_projected: "EPSG:32719" # UTM 19S para cálculo de distancias métricas en RM
+
+data_paths:
+  raw: "data/raw"
+  interim: "data/interim"
+  processed: "data/processed"
+  benchmark_file: "data/processed/benchmark_temporales_2024.parquet"
+
+modeling:
+  critical_outage_threshold_alpha: 0.05 # 5% de desconexión comunal
+  baseline_wind_gust_kmh: 40.0
+  baseline_rain_mm: 20.0
+
+sources:
+  sec_endpoint_url: "https://interrupciones.sec.cl/api/estado-clientes"
+  dmc_reference_stations:
+    - codigo: "330020"
+      nombre: "Quinta Normal"
+      lat: -33.4442
+      lon: -70.6828
+    - codigo: "330019"
+      nombre: "Tobalaba"
+      lat: -33.4561
+      lon: -70.5503
+    - codigo: "330030"
+      nombre: "Pudahuel"
+      lat: -33.3931
+      lon: -70.7858
+    - codigo: "330056"
+      nombre: "La Florida"
+      lat: -33.5228
+      lon: -70.5847
+    - codigo: "330067"
+      nombre: "Talagante"
+      lat: -33.6653
+      lon: -70.9328

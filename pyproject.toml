@@ -1,0 +1,61 @@
+[project]
+name = "gridbreak-cl"
+version = "0.1.0"
+description = "Modelamiento causal de fragilidad de la red eléctrica ante eventos climáticos en la RM"
+readme = "README.md"
+authors = [
+    { name = "Sebastian Urzua B", email = "seb.urzua91@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.15.0",
+    "folium>=0.20.0",
+    "geopandas>=1.2.0",
+    "lifelines>=0.30.3",
+    "pandas>=2.3.3",
+    "plotly>=7.1.0",
+    "polars>=2.0.0",
+    "pydantic>=2.13.5",
+    "pyyaml>=6.0.3",
+    "requests>=2.34.2",
+    "scikit-learn>=1.9.1",
+    "shapely>=2.2.0",
+    "statsmodels>=0.15.0",
+    "streamlit>=1.65.0",
+]
+
+[project.scripts]
+gridbreak-cl = "gridbreak_cl:main"
+
+[build-system]
+requires = ["uv_build>=0.12.7,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.4.0",
+    "mypy>=2.4.0",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.16.10",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B"]
+ignore = ["E501", "N806"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
