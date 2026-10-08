@@ -157,7 +157,7 @@ flowchart TD
 *Objetivo: Maximizar el impacto del proyecto en GitHub y plataformas profesionales.*
 
 - [x] **5.1 Narrativa y Post de LinkedIn (`docs/linkedin_storytelling.md`):**
-  - Estructuración de post viral-técnico con gancho contrarian ("*¿Fuerza mayor o asimetría estructural?*"), 3 hallazgos cuantitativos clave (umbrales $R_{50}$, Hazard Ratios, red aérea) y guía de carrusel visual de 4 láminas.
+  - Estructuración de post con enfoque Data Newsjacking & Fact-Checking: contraste punto a punto de qué afirmaciones de la noticia y comunicados oficiales son contradichas o confirmadas por los datos (umbrales $W_{50}$, árboles vs. red aérea, supervivencia de Cox $\text{HR} = 0.33$) y guía de carrusel visual de 4 láminas.
 - [x] **5.2 CI/CD con GitHub Actions (`.github/workflows/ci.yml`):**
   - Workflow automatizado de validación continua con `astral-sh/setup-uv@v5`: `ruff check`, `ruff format --check`, `mypy --strict`, `pytest --cov` (24 tests pasando) y validación del CLI `gridbreak-cl ingest-live --offline`.
 - [x] **5.3 Despliegue Público de la App y Tema Personalizado (`.streamlit/config.toml`):**

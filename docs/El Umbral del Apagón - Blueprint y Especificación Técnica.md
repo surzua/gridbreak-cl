@@ -401,7 +401,9 @@ def test_model_fit_and_vulnerability_gap(synthetic_storm_data: pd.DataFrame) -> 
   * Comparador frente a frente de comunas (ej: *Cerro Navia vs. Vitacura* o *San Ramón vs. Las Condes*).
   * Gráficas de Superficie 3D y Curvas Sigmoides de Fragilidad.
 
-### 8.2 Estrategia de Storytelling para LinkedIn
-* **Hook Provocador:** "¿Fuerza mayor o desigualdad estructural? Lo que revelan 100.000 datos de la SEC y la DMC sobre el colapso eléctrico en Santiago."
-* **Evidencia Visual:** Gráfica comparativa de curvas de fragilidad mostrando cómo a 15 mm y 50 km/h las comunas vulnerables ya quiebran el umbral del 50% de probabilidad de apagón masivo.
-* **Llamado a la Acción:** Enlace al repositorio de GitHub y demo en vivo de Streamlit.
+### 8.2 Estrategia de Storytelling para LinkedIn (Data Newsjacking & Fact-Checking)
+* **Enfoque Central:** Auditoría cuantitativa a la noticia y al relato oficial de las distribuidoras ("evento inédito de fuerza mayor" y "caída masiva de árboles").
+* **Estructura del Post:** Contrastar punto por punto qué afirmaciones de los titulares de prensa son **CONTRADICHAS** por los datos (umbrales $W_{50}$ comunales ordinarios, irrelevancia del arbolado frente al tendido aéreo, asimetría de supervivencia en Cox con $\text{HR} = 0.33$) y cuáles son **CONFIRMADAS** (el rol cinético de las ráfagas máximas).
+* **Evidencia Visual:** Carrusel de 4 láminas en `reports/figures/` con las curvas de fragilidad, curvas Kaplan-Meier, Forest Plot de Cox y brechas comunales $W_{50}$.
+* **Documento Maestro:** Ver detalle completo, matriz de contraste y copias listas para publicar en [docs/linkedin_storytelling.md](file:///Users/sebastianfelipeurzuaborquez/Proyectos/gridbreak-cl/docs/linkedin_storytelling.md).
+
