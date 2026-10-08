@@ -16,11 +16,11 @@ from gridbreak_cl.models.survival_analysis import SurvivalModel
 # Paleta editorial de alto contraste
 PALETTE = {
     "vulnerable": "#e74c3c",  # Rojo señal
-    "medio": "#f39c12",        # Naranja alerta
-    "alto": "#2ecc71",         # Verde resiliente
-    "referencia": "#3498db",   # Azul institucional
-    "neutral_dark": "#2c3e50", # Gris oscuro
-    "grid": "#ecf0f1",         # Gris claro
+    "medio": "#f39c12",  # Naranja alerta
+    "alto": "#2ecc71",  # Verde resiliente
+    "referencia": "#3498db",  # Azul institucional
+    "neutral_dark": "#2c3e50",  # Gris oscuro
+    "grid": "#ecf0f1",  # Gris claro
 }
 
 
@@ -46,9 +46,24 @@ def plot_fragility_curves_comparison(
 
     r_vals = np.linspace(rain_range[0], rain_range[1], 120)
     scenarios: list[dict[str, Any]] = [
-        {"name": "Tercil Vulnerable (NSE = -1.5)", "nse": -1.5, "color": PALETTE["vulnerable"], "aerial": 0.88},
-        {"name": "Tercil Medio (NSE = 0.0)", "nse": 0.0, "color": PALETTE["medio"], "aerial": 0.70},
-        {"name": "Tercil Acomodado (NSE = +1.8)", "nse": 1.8, "color": PALETTE["alto"], "aerial": 0.38},
+        {
+            "name": "Tercil Vulnerable (NSE = -1.5)",
+            "nse": -1.5,
+            "color": PALETTE["vulnerable"],
+            "aerial": 0.88,
+        },
+        {
+            "name": "Tercil Medio (NSE = 0.0)",
+            "nse": 0.0,
+            "color": PALETTE["medio"],
+            "aerial": 0.70,
+        },
+        {
+            "name": "Tercil Acomodado (NSE = +1.8)",
+            "nse": 1.8,
+            "color": PALETTE["alto"],
+            "aerial": 0.38,
+        },
     ]
 
     for sc in scenarios:
@@ -84,7 +99,13 @@ def plot_fragility_curves_comparison(
             )
 
     # Línea umbral del 50%
-    ax.axhline(0.5, color="#7f8c8d", linestyle=":", lw=1.2, label="Umbral Crítico de Falla ($P=0.50$)")
+    ax.axhline(
+        0.5,
+        color="#7f8c8d",
+        linestyle=":",
+        lw=1.2,
+        label="Umbral Crítico de Falla ($P=0.50$)",
+    )
 
     ax.set_title(
         f"Curvas de Fragilidad Eléctrica RM: Brecha Socioeconómica\n(Ráfaga constante = {wind_kmh:.0f} km/h)",
@@ -102,7 +123,12 @@ def plot_fragility_curves_comparison(
     plt.tight_layout()
 
     if output_path is None:
-        output_path = get_project_root() / "reports" / "figures" / "curvas_fragilidad_terciles.png"
+        output_path = (
+            get_project_root()
+            / "reports"
+            / "figures"
+            / "curvas_fragilidad_terciles.png"
+        )
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(output_path, dpi=300)
@@ -137,9 +163,17 @@ def plot_kaplan_meier_survival(
         sf = kmf.survival_function_[kmf.survival_function_.columns[0]]
         color = color_map.get(str(label), PALETTE["referencia"])
 
-        ax.step(timeline, sf, where="post", label=f"Tercil {label}", color=color, lw=2.5)
+        ax.step(
+            timeline, sf, where="post", label=f"Tercil {label}", color=color, lw=2.5
+        )
 
-    ax.axhline(0.5, color="#7f8c8d", linestyle=":", lw=1.2, label="Mediana de Supervivencia ($S=0.50$)")
+    ax.axhline(
+        0.5,
+        color="#7f8c8d",
+        linestyle=":",
+        lw=1.2,
+        label="Mediana de Supervivencia ($S=0.50$)",
+    )
 
     ax.set_title(
         f"Dinámica Temporal de Colapso Eléctrico: Curvas Kaplan-Meier\nLog-Rank Test $p = {logrank['p_value']:.2e}$",
@@ -156,7 +190,12 @@ def plot_kaplan_meier_survival(
     plt.tight_layout()
 
     if output_path is None:
-        output_path = get_project_root() / "reports" / "figures" / "supervivencia_kaplan_meier.png"
+        output_path = (
+            get_project_root()
+            / "reports"
+            / "figures"
+            / "supervivencia_kaplan_meier.png"
+        )
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(output_path, dpi=300)
@@ -181,7 +220,9 @@ def plot_cox_hazard_ratios(
     labels = hr_df["Variable"].values
 
     # Eje horizontal y línea de nulidad HR = 1.0
-    ax.axvline(1.0, color="#7f8c8d", linestyle="--", lw=1.2, label="Sin Efecto (HR = 1.0)")
+    ax.axvline(
+        1.0, color="#7f8c8d", linestyle="--", lw=1.2, label="Sin Efecto (HR = 1.0)"
+    )
 
     # Limitar visualmente el eje para presentación limpia
     display_hrs = np.clip(hrs, 0.05, 15.0)
@@ -220,7 +261,9 @@ def plot_cox_hazard_ratios(
     plt.tight_layout()
 
     if output_path is None:
-        output_path = get_project_root() / "reports" / "figures" / "hazard_ratios_forest_plot.png"
+        output_path = (
+            get_project_root() / "reports" / "figures" / "hazard_ratios_forest_plot.png"
+        )
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(output_path, dpi=300)
@@ -266,7 +309,11 @@ def plot_critical_thresholds_gap(
 
     fig, ax = plt.subplots(figsize=(10, 5.5), dpi=300)
     colors = [
-        PALETTE["vulnerable"] if n < -0.5 else PALETTE["alto"] if n > 0.5 else PALETTE["medio"]
+        PALETTE["vulnerable"]
+        if n < -0.5
+        else PALETTE["alto"]
+        if n > 0.5
+        else PALETTE["medio"]
         for n in sub["nse_score"]
     ]
 
@@ -296,7 +343,12 @@ def plot_critical_thresholds_gap(
     plt.tight_layout()
 
     if output_path is None:
-        output_path = get_project_root() / "reports" / "figures" / "brecha_umbrales_viento_comunal.png"
+        output_path = (
+            get_project_root()
+            / "reports"
+            / "figures"
+            / "brecha_umbrales_viento_comunal.png"
+        )
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(output_path, dpi=300)
@@ -312,7 +364,9 @@ def generate_all_portfolio_figures(output_dir: Path | None = None) -> list[Path]
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Cargar modelos y datos
-    df_raw = pd.read_parquet(root / "data" / "processed" / "benchmark_temporales_2024.parquet")
+    df_raw = pd.read_parquet(
+        root / "data" / "processed" / "benchmark_temporales_2024.parquet"
+    )
     frag_model = FragilityModel()
     frag_model.fit(df_raw)
 
@@ -338,13 +392,17 @@ def generate_all_portfolio_figures(output_dir: Path | None = None) -> list[Path]
             frag_model, output_path=output_dir / "curvas_fragilidad_terciles.png"
         ),
         plot_kaplan_meier_survival(
-            surv_model, df_surv, output_path=output_dir / "supervivencia_kaplan_meier.png"
+            surv_model,
+            df_surv,
+            output_path=output_dir / "supervivencia_kaplan_meier.png",
         ),
         plot_cox_hazard_ratios(
             surv_model, output_path=output_dir / "hazard_ratios_forest_plot.png"
         ),
         plot_critical_thresholds_gap(
-            frag_model, df_comunas, output_path=output_dir / "brecha_umbrales_viento_comunal.png"
+            frag_model,
+            df_comunas,
+            output_path=output_dir / "brecha_umbrales_viento_comunal.png",
         ),
     ]
 

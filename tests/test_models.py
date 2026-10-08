@@ -113,10 +113,7 @@ def test_model_diagnostics_and_real_benchmark_fit() -> None:
     from gridbreak_cl.config import get_project_root
 
     parquet_path = (
-        get_project_root()
-        / "data"
-        / "processed"
-        / "benchmark_temporales_2024.parquet"
+        get_project_root() / "data" / "processed" / "benchmark_temporales_2024.parquet"
     )
     assert parquet_path.exists()
 

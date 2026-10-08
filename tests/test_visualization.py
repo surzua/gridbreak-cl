@@ -38,11 +38,15 @@ def test_get_risk_color() -> None:
     assert get_risk_color(0.15) == "#2ecc71"
 
 
-def test_folium_maps_generation(tmp_path: Path, sample_comunas_df: pd.DataFrame) -> None:
+def test_folium_maps_generation(
+    tmp_path: Path, sample_comunas_df: pd.DataFrame
+) -> None:
     map_vuln = tmp_path / "vuln.html"
     map_live = tmp_path / "live.html"
 
-    out1 = generate_folium_vulnerability_map(sample_comunas_df, output_html_path=map_vuln)
+    out1 = generate_folium_vulnerability_map(
+        sample_comunas_df, output_html_path=map_vuln
+    )
     out2 = generate_folium_live_map(sample_comunas_df, output_html_path=map_live)
 
     assert out1.exists()
@@ -51,7 +55,9 @@ def test_folium_maps_generation(tmp_path: Path, sample_comunas_df: pd.DataFrame)
     assert out2.stat().st_size > 500
 
 
-def test_static_charts_generation(tmp_path: Path, sample_comunas_df: pd.DataFrame) -> None:
+def test_static_charts_generation(
+    tmp_path: Path, sample_comunas_df: pd.DataFrame
+) -> None:
     # Generar modelos sintéticos para probar plots
     frag_model = FragilityModel()
     # Generar mini panel sintético

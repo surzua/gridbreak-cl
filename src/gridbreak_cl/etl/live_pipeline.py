@@ -108,12 +108,8 @@ class LivePipeline:
 
         # 5. Generación de features analíticas requeridas por los modelos
         merged["rafaga_cuadratica"] = (merged["rafaga_max_kmh"] ** 2) / 100.0
-        merged["precip_x_nse"] = (
-            merged["precip_acumulada_mm"] * merged["nse_score"]
-        )
-        merged["rafaga_x_nse"] = (
-            merged["rafaga_max_kmh"] * merged["nse_score"]
-        )
+        merged["precip_x_nse"] = merged["precip_acumulada_mm"] * merged["nse_score"]
+        merged["rafaga_x_nse"] = merged["rafaga_max_kmh"] * merged["nse_score"]
         merged["es_cge"] = (merged["empresa"] == "CGE").astype(float)
 
         # 6. Persistencia del snapshot en Parquet
@@ -136,9 +132,7 @@ class LivePipeline:
             if history_path.exists():
                 try:
                     df_existing = pd.read_parquet(history_path)
-                    combined = pd.concat(
-                        [df_existing, merged], ignore_index=True
-                    )
+                    combined = pd.concat([df_existing, merged], ignore_index=True)
                     # Deduplicar por comuna y timestamp
                     combined = combined.drop_duplicates(
                         subset=["comuna_id", "timestamp"]
@@ -152,10 +146,13 @@ class LivePipeline:
         return merged
 
 
-def run_live_pipeline() -> pd.DataFrame:
+def run_live_pipeline(
+    offline_mock: bool = False,
+    persist_raw: bool = True,
+) -> pd.DataFrame:
     """Función de conveniencia para ejecutar la ingesta en vivo."""
     pipeline = LivePipeline()
-    return pipeline.run_ingestion()
+    return pipeline.run_ingestion(offline_mock=offline_mock, persist_raw=persist_raw)
 
 
 if __name__ == "__main__":

@@ -52,7 +52,7 @@ def generate_folium_vulnerability_map(
             <b>Prob. Colapso:</b> <span style="color: {color}; font-weight: bold;">{prob:.1%}</span><br>
             <b>Red Aérea Expuesta:</b> {red_aerea:.0%}<br>
             <b>Clientes Totales:</b> {clientes:,}<br>
-            <b>NSE Score:</b> {float(row.get('nse_score', 0.0)):+.2f}
+            <b>NSE Score:</b> {float(row.get("nse_score", 0.0)):+.2f}
         </div>
         """
 
@@ -70,10 +70,7 @@ def generate_folium_vulnerability_map(
 
     if output_html_path is None:
         output_html_path = (
-            get_project_root()
-            / "reports"
-            / "maps"
-            / "vulnerabilidad_rm_simulada.html"
+            get_project_root() / "reports" / "maps" / "vulnerabilidad_rm_simulada.html"
         )
 
     output_html_path.parent.mkdir(parents=True, exist_ok=True)

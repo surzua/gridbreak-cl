@@ -74,7 +74,9 @@ class SurvivalModel:
     ) -> dict[str, Any]:
         """Calcula la prueba multivariada de Log-Rank para contrastar diferencias entre estratos."""
         if strata_col not in df.columns:
-            raise ValueError(f"Columna de estrato '{strata_col}' no presente en DataFrame.")
+            raise ValueError(
+                f"Columna de estrato '{strata_col}' no presente en DataFrame."
+            )
 
         results = multivariate_logrank_test(
             event_durations=df[duration_col],
@@ -114,7 +116,9 @@ class SurvivalModel:
     def get_hazard_ratios(self) -> pd.DataFrame:
         """Retorna un DataFrame con coeficientes, Hazard Ratios (exp(coef)), IC 95% y significancia."""
         if self.cox_fitter is None:
-            raise ValueError("El modelo de Cox no ha sido ajustado. Ejecute fit_cox_model() primero.")
+            raise ValueError(
+                "El modelo de Cox no ha sido ajustado. Ejecute fit_cox_model() primero."
+            )
 
         summary = self.cox_fitter.summary
         records: list[dict[str, Any]] = []
@@ -162,7 +166,9 @@ class SurvivalModel:
         curves: pd.DataFrame = self.cox_fitter.predict_survival_function(subset)
         return curves
 
-    def predict_median_survival_time(self, covariates_df: pd.DataFrame) -> pd.Series[float]:
+    def predict_median_survival_time(
+        self, covariates_df: pd.DataFrame
+    ) -> pd.Series[float]:
         """Predice el tiempo mediano al colapso (en horas) para cada observación provista."""
         if self.cox_fitter is None:
             raise ValueError("El modelo de Cox no ha sido ajustado.")
@@ -212,4 +218,6 @@ class SurvivalModel:
             return test_results.summary
         except Exception:
             # Fallback seguro con resumen de coeficientes
-            return self.get_hazard_ratios()[["Variable", "Coeficiente (Beta)", "p-value"]]
+            return self.get_hazard_ratios()[
+                ["Variable", "Coeficiente (Beta)", "p-value"]
+            ]

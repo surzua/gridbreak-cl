@@ -18,9 +18,7 @@ from gridbreak_cl.etl.historical_seed import get_rm_comunas_metadata
 logger = logging.getLogger(__name__)
 
 
-def haversine_distance_km(
-    lat1: float, lon1: float, lat2: float, lon2: float
-) -> float:
+def haversine_distance_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     """Calcula la distancia geodésica en kilómetros entre dos coordenadas (fórmula de Haversine)."""
     r_tierra = 6371.0  # Radio medio de la Tierra en km
 
@@ -42,9 +40,7 @@ class SpatialInterpolator:
 
     def __init__(self, power: float | None = None) -> None:
         settings = load_settings()
-        self.power = power or float(
-            settings.get("modeling", {}).get("idw_power", 2.0)
-        )
+        self.power = power or float(settings.get("modeling", {}).get("idw_power", 2.0))
 
     def interpolate_stations_to_comunas(
         self,
@@ -77,9 +73,7 @@ class SpatialInterpolator:
                     f"Columna '{col}' requerida tanto en estaciones como en comunas."
                 )
 
-        present_weather_cols = [
-            c for c in weather_cols if c in df_stations.columns
-        ]
+        present_weather_cols = [c for c in weather_cols if c in df_stations.columns]
         if not present_weather_cols:
             raise ValueError(
                 f"Ninguna de las columnas {weather_cols} se encuentra en df_stations."
@@ -97,9 +91,7 @@ class SpatialInterpolator:
             c_lat, c_lon = comuna_coords[i]
             for j in range(n_estaciones):
                 s_lat, s_lon = station_coords[j]
-                dist_matrix[i, j] = haversine_distance_km(
-                    c_lat, c_lon, s_lat, s_lon
-                )
+                dist_matrix[i, j] = haversine_distance_km(c_lat, c_lon, s_lat, s_lon)
 
         # Cálculo de pesos IDW: w_ij = 1 / (d_ij + eps)^p
         eps = 1e-5
@@ -116,9 +108,7 @@ class SpatialInterpolator:
             interpolated = np.dot(norm_weights, station_vals)
 
             # Mapeo a nombres estándar del pipeline
-            out_col = (
-                "precip_acumulada_mm" if col == "precipitacion_mm" else col
-            )
+            out_col = "precip_acumulada_mm" if col == "precipitacion_mm" else col
             result_df[out_col] = np.round(interpolated, 2)
 
         # Asignar estación de referencia más cercana (Voronoi nearest)

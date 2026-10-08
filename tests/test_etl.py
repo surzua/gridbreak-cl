@@ -120,9 +120,7 @@ def test_dmc_client_offline_mock() -> None:
     from gridbreak_cl.etl.dmc_client import DMCWeatherClient
 
     client = DMCWeatherClient()
-    ts, df_obs = client.collect_latest_weather(
-        persist_raw=False, offline_mock=True
-    )
+    ts, df_obs = client.collect_latest_weather(persist_raw=False, offline_mock=True)
     assert len(df_obs) == 5
     assert (df_obs["precipitacion_mm"] == 5.0).all()
     assert (df_obs["viento_kmh"] == 25.0).all()
@@ -210,4 +208,3 @@ def test_sec_collector_retry_failure() -> None:
     with patch("requests.post", side_effect=requests.RequestException("Timeout")):
         with pytest.raises(ConnectionError, match="Fallo en conexión con endpoint SEC"):
             collector.fetch_raw_snapshot(datetime(2026, 10, 7, 22, 0))
-

@@ -18,3 +18,7 @@ data/interim/
 
 # Scratch & temporary scripts
 scratch/
+
+# Coverage artifacts
+.coverage
+coverage.xml

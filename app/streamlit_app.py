@@ -420,9 +420,7 @@ if app_mode == "🎮 Simulador Predictivo (Curvas GLM)":
 
         metrics = model.get_metrics()
         m_col1, m_col2, m_col3, m_col4 = st.columns(4)
-        m_col1.metric(
-            "Pseudo R² (McFadden)", f"{metrics['pseudo_r2_mcfadden']:.3f}"
-        )
+        m_col1.metric("Pseudo R² (McFadden)", f"{metrics['pseudo_r2_mcfadden']:.3f}")
         m_col2.metric("Akaike Info Criterion (AIC)", f"{metrics['aic']:.1f}")
         m_col3.metric("Log-Likelihood", f"{metrics['log_likelihood']:.1f}")
         m_col4.metric("Observaciones Panel", f"{int(metrics['nobs']):,}")
@@ -510,7 +508,9 @@ elif app_mode == "⏱️ Análisis de Supervivencia (Cox & KM)":
     )
 
     with tab_km:
-        st.subheader(f"Curvas Empíricas de Supervivencia estratificadas por {strata_option}")
+        st.subheader(
+            f"Curvas Empíricas de Supervivencia estratificadas por {strata_option}"
+        )
         st.caption(
             "Probabilidad S(t) de que la comuna NO haya sufrido corte crítico (>5% de clientes desconectados) en función de las horas transcurridas."
         )
@@ -529,7 +529,9 @@ elif app_mode == "⏱️ Análisis de Supervivencia (Cox & KM)":
             ci_lower = ci.iloc[:, 0]
             ci_upper = ci.iloc[:, 1]
 
-            cur_color = "#95a5a6" if label == "Global" else colors[color_idx % len(colors)]
+            cur_color = (
+                "#95a5a6" if label == "Global" else colors[color_idx % len(colors)]
+            )
             if label != "Global":
                 color_idx += 1
 
@@ -540,7 +542,12 @@ elif app_mode == "⏱️ Análisis de Supervivencia (Cox & KM)":
                     y=sf,
                     mode="lines",
                     name=str(label),
-                    line={"shape": "hv", "color": cur_color, "width": 3 if label != "Global" else 2, "dash": "dash" if label == "Global" else "solid"},
+                    line={
+                        "shape": "hv",
+                        "color": cur_color,
+                        "width": 3 if label != "Global" else 2,
+                        "dash": "dash" if label == "Global" else "solid",
+                    },
                 )
             )
 
@@ -596,14 +603,20 @@ elif app_mode == "⏱️ Análisis de Supervivencia (Cox & KM)":
                 error_x={
                     "type": "data",
                     "symmetric": False,
-                    "array": [s - h for s, h in zip(display_ci_sup, display_hrs, strict=False)],
-                    "arrayminus": [h - i for h, i in zip(display_hrs, display_ci_inf, strict=False)],
+                    "array": [
+                        s - h for s, h in zip(display_ci_sup, display_hrs, strict=False)
+                    ],
+                    "arrayminus": [
+                        h - i for h, i in zip(display_hrs, display_ci_inf, strict=False)
+                    ],
                     "color": "#e74c3c",
                 },
                 name="Hazard Ratio (IC 95%)",
             )
         )
-        fig_forest.add_vline(x=1.0, line_dash="dash", line_color="rgba(255, 255, 255, 0.5)")
+        fig_forest.add_vline(
+            x=1.0, line_dash="dash", line_color="rgba(255, 255, 255, 0.5)"
+        )
         fig_forest.update_layout(
             xaxis_title="Hazard Ratio (exp(Beta)) [Escala Acotada]",
             yaxis_title="Covariable",
@@ -624,22 +637,46 @@ elif app_mode == "⏱️ Análisis de Supervivencia (Cox & KM)":
 
     with tab_comuna_surv:
         st.subheader("Curva de Supervivencia Predicha por Perfil Comunal")
-        st.caption("Selecciona dos comunas para contrastar la probabilidad proyectada de supervivencia hora por hora.")
+        st.caption(
+            "Selecciona dos comunas para contrastar la probabilidad proyectada de supervivencia hora por hora."
+        )
 
         c_surv1, c_surv2 = st.columns(2)
         comuna_list = sorted(df_surv["comuna_nombre"].unique().tolist())
-        c_a = c_surv1.selectbox("Comuna de Referencia A", comuna_list, index=comuna_list.index("Cerro Navia") if "Cerro Navia" in comuna_list else 0)
-        c_b = c_surv2.selectbox("Comuna de Referencia B", comuna_list, index=comuna_list.index("Vitacura") if "Vitacura" in comuna_list else 1)
+        c_a = c_surv1.selectbox(
+            "Comuna de Referencia A",
+            comuna_list,
+            index=comuna_list.index("Cerro Navia")
+            if "Cerro Navia" in comuna_list
+            else 0,
+        )
+        c_b = c_surv2.selectbox(
+            "Comuna de Referencia B",
+            comuna_list,
+            index=comuna_list.index("Vitacura") if "Vitacura" in comuna_list else 1,
+        )
 
         row_surv_a = df_surv[df_surv["comuna_nombre"] == c_a].head(1)
         row_surv_b = df_surv[df_surv["comuna_nombre"] == c_b].head(1)
 
-        curves_pred = surv_model.predict_survival_curves(pd.concat([row_surv_a, row_surv_b]))
+        curves_pred = surv_model.predict_survival_curves(
+            pd.concat([row_surv_a, row_surv_b])
+        )
         med_a = float(surv_model.predict_median_survival_time(row_surv_a).iloc[0])
         med_b = float(surv_model.predict_median_survival_time(row_surv_b).iloc[0])
 
-        c_surv1.metric(f"Tiempo Mediano al Fallo ({c_a})", f"{med_a:.0f} horas", delta="Fallo Temprano", delta_color="inverse")
-        c_surv2.metric(f"Tiempo Mediano al Fallo ({c_b})", f"{med_b:.0f} horas", delta="Alta Resiliencia", delta_color="normal")
+        c_surv1.metric(
+            f"Tiempo Mediano al Fallo ({c_a})",
+            f"{med_a:.0f} horas",
+            delta="Fallo Temprano",
+            delta_color="inverse",
+        )
+        c_surv2.metric(
+            f"Tiempo Mediano al Fallo ({c_b})",
+            f"{med_b:.0f} horas",
+            delta="Alta Resiliencia",
+            delta_color="normal",
+        )
 
         fig_pred_surv = go.Figure()
         fig_pred_surv.add_trace(
@@ -660,7 +697,12 @@ elif app_mode == "⏱️ Análisis de Supervivencia (Cox & KM)":
                 line={"color": "#2ecc71", "width": 3},
             )
         )
-        fig_pred_surv.add_hline(y=0.5, line_dash="dot", line_color="rgba(255, 255, 255, 0.4)", annotation_text="50% Fallo")
+        fig_pred_surv.add_hline(
+            y=0.5,
+            line_dash="dot",
+            line_color="rgba(255, 255, 255, 0.4)",
+            annotation_text="50% Fallo",
+        )
         fig_pred_surv.update_layout(
             xaxis_title="Horas de Temporal",
             yaxis_title="Probabilidad de Supervivencia Predicha",
@@ -777,9 +819,7 @@ else:
                 df_live["comuna_nombre"].sort_values(),
                 index=0,
             )
-            com_row = df_live[
-                df_live["comuna_nombre"] == selected_comuna
-            ].iloc[0]
+            com_row = df_live[df_live["comuna_nombre"] == selected_comuna].iloc[0]
 
             st.markdown(f"""
             * **Distribuidora:** `{com_row["empresa"]}`

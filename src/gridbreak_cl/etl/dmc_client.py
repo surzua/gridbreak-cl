@@ -190,9 +190,7 @@ class DMCWeatherClient:
         if not offline_mock and self.dmc_user and self.dmc_token:
             try:
                 dmc_data = self._fetch_from_dmc_official()
-                logger.info(
-                    "Obtenidas %d estaciones de DMC oficial", len(dmc_data)
-                )
+                logger.info("Obtenidas %d estaciones de DMC oficial", len(dmc_data))
             except Exception as e:
                 logger.warning(
                     "Fallo al consultar DMC oficial (%s). Recurriendo a fallback Open-Meteo.",
@@ -279,9 +277,7 @@ class DMCWeatherClient:
         self, persist_raw: bool = True, offline_mock: bool = False
     ) -> tuple[datetime, pd.DataFrame]:
         """Pipeline completo de telemetría meteorológica."""
-        timestamp, df_obs = self.fetch_station_observations(
-            offline_mock=offline_mock
-        )
+        timestamp, df_obs = self.fetch_station_observations(offline_mock=offline_mock)
         if persist_raw:
             self.save_raw_snapshot(df_obs, timestamp)
         return timestamp, df_obs

@@ -13,7 +13,7 @@
 | **Fase 2** | **Ingesta Dual y Telemetría en Vivo** | `100% COMPLETADO` ✅ | Live SEC Collector (`sec_collector.py`), DMC & Open-Meteo Client (`dmc_client.py`), IDW Spatial Join (`spatial_join.py`), Orquestador (`live_pipeline.py`), CLI `gridbreak-cl ingest-live`, Streamlit dual mode, 13 tests. |
 | **Fase 3** | **Modelamiento Causal Avanzado (Supervivencia)** | `100% COMPLETADO` ✅ | Feature pipeline (`build_features.py`), Kaplan-Meier estratificado, Log-Rank test ($p < 0.001$), Cox PH con penalización L2 (`survival_analysis.py`), Hazard Ratios, Concordance $C=0.90$, Streamlit modo supervivencia y 20 tests unitarios. |
 | **Fase 4** | **Jupyter Notebooks de Evidencia y Visualización** | `100% COMPLETADO` ✅ | Notebooks ejecutados (`01_eda`, `02_modelamiento`), figuras 300 DPI (`reports/figures/`), mapas interactivos Folium (`reports/maps/`), módulos `static_charts.py` y `map_generator.py`, 24 tests. |
-| **Fase 5** | **Storytelling de Alto Impacto y Despliegue** | `PENDIENTE` ⏳ | Estrategia LinkedIn, exportación de assets visuales, despliegue en la nube (Streamlit Cloud). |
+| **Fase 5** | **Storytelling de Alto Impacto y Despliegue** | `100% COMPLETADO` ✅ | Post LinkedIn maestro (`docs/linkedin_storytelling.md`), CI/CD GitHub Actions (`.github/workflows/ci.yml`), config Streamlit Cloud (`.streamlit/config.toml`), README de portafolio senior. |
 
 ---
 
@@ -153,12 +153,14 @@ flowchart TD
 
 ---
 
-### ⚪ Fase 5: Storytelling, Divulgación y Portafolio Senior
+### 🟢 Fase 5: Storytelling, Divulgación y Portafolio Senior *(Completado y Validado)*
 *Objetivo: Maximizar el impacto del proyecto en GitHub y plataformas profesionales.*
 
-- [ ] **5.1 Narrativa y Post de LinkedIn:**
-  - Estructuración del post: gancho contrarian ("*¿Fuerza mayor o asimetría estructural?*"), hallazgos clave, gráficos de impacto y llamada a la acción.
-- [ ] **5.2 CI/CD con GitHub Actions:**
-  - Workflow automatizado de validación: `ruff check`, `mypy --strict`, `pytest --cov`.
-- [ ] **5.3 Despliegue Público de la App:**
-  - Configuración para despliegue en Streamlit Community Cloud con datos benchmark pre-cargados.
+- [x] **5.1 Narrativa y Post de LinkedIn (`docs/linkedin_storytelling.md`):**
+  - Estructuración de post viral-técnico con gancho contrarian ("*¿Fuerza mayor o asimetría estructural?*"), 3 hallazgos cuantitativos clave (umbrales $R_{50}$, Hazard Ratios, red aérea) y guía de carrusel visual de 4 láminas.
+- [x] **5.2 CI/CD con GitHub Actions (`.github/workflows/ci.yml`):**
+  - Workflow automatizado de validación continua con `astral-sh/setup-uv@v5`: `ruff check`, `ruff format --check`, `mypy --strict`, `pytest --cov` (24 tests pasando) y validación del CLI `gridbreak-cl ingest-live --offline`.
+- [x] **5.3 Despliegue Público de la App y Tema Personalizado (`.streamlit/config.toml`):**
+  - Configuración de tema oscuro profesional de alto contraste para Streamlit Community Cloud con datos benchmark precargados y compatibilidad headless.
+- [x] **5.4 Portafolio Senior y Documentación:**
+  - Modernización completa de `README.md` con badges de build, tablas de resultados analíticos, arquitectura y diagramas.

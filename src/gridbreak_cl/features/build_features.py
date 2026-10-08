@@ -69,11 +69,21 @@ class FeatureEngineer:
                 lambda s: s.diff().fillna(0.0)
             )
         else:
-            data["precip_roll_3h"] = data["precip_acumulada_mm"].rolling(3, min_periods=1).sum()
-            data["precip_roll_6h"] = data["precip_acumulada_mm"].rolling(6, min_periods=1).sum()
-            data["precip_roll_12h"] = data["precip_acumulada_mm"].rolling(12, min_periods=1).sum()
-            data["rafaga_max_roll_3h"] = data["rafaga_max_kmh"].rolling(3, min_periods=1).max()
-            data["rafaga_max_roll_6h"] = data["rafaga_max_kmh"].rolling(6, min_periods=1).max()
+            data["precip_roll_3h"] = (
+                data["precip_acumulada_mm"].rolling(3, min_periods=1).sum()
+            )
+            data["precip_roll_6h"] = (
+                data["precip_acumulada_mm"].rolling(6, min_periods=1).sum()
+            )
+            data["precip_roll_12h"] = (
+                data["precip_acumulada_mm"].rolling(12, min_periods=1).sum()
+            )
+            data["rafaga_max_roll_3h"] = (
+                data["rafaga_max_kmh"].rolling(3, min_periods=1).max()
+            )
+            data["rafaga_max_roll_6h"] = (
+                data["rafaga_max_kmh"].rolling(6, min_periods=1).max()
+            )
             data["delta_rafaga_1h"] = data["rafaga_max_kmh"].diff().fillna(0.0)
 
         # Energía cinética específica del viento (v en m/s, E = 0.5 * v^2)
@@ -165,16 +175,12 @@ def build_survival_dataset(
             "arbolado_m2_hab": float(first_row.get("arbolado_m2_hab", 5.0)),
             "red_aerea_km_ratio": float(first_row.get("red_aerea_km_ratio", 0.70)),
             "es_cge": float(
-                1.0
-                if str(first_row.get("empresa", "")).upper() == "CGE"
-                else 0.0
+                1.0 if str(first_row.get("empresa", "")).upper() == "CGE" else 0.0
             ),
             "es_rural": float(first_row.get("es_rural", 0)),
             "clientes_totales": int(first_row.get("clientes_totales", 10000)),
             "rafaga_max_evento": float(sorted_group["rafaga_max_kmh"].max()),
-            "precip_total_evento": float(
-                sorted_group["precip_acumulada_mm"].max()
-            ),
+            "precip_total_evento": float(sorted_group["precip_acumulada_mm"].max()),
         }
 
         if event_col_name in sorted_group.columns:
@@ -216,7 +222,9 @@ def process_and_save_feature_pipeline(
     """Ejecuta el pipeline completo de ingeniería de features y persiste los Parquets procesados."""
     root = get_project_root()
     if input_parquet is None:
-        input_parquet = root / "data" / "processed" / "benchmark_temporales_2024.parquet"
+        input_parquet = (
+            root / "data" / "processed" / "benchmark_temporales_2024.parquet"
+        )
     if output_enriched_path is None:
         output_enriched_path = (
             root / "data" / "processed" / "panel_features_enriched.parquet"
