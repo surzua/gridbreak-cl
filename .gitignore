@@ -16,3 +16,5 @@ wheels/
 data/raw/
 data/interim/
 
+# Scratch & temporary scripts
+scratch/

@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_ee47cf8aab557600f42f056687b301a3 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_ee47cf8aab557600f42f056687b301a3" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_ee47cf8aab557600f42f056687b301a3 = L.map(
+                "map_ee47cf8aab557600f42f056687b301a3",
+                {
+                    center: [-33.45, -70.66],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_d54d91c61225d5381dee5938c217b732 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_d54d91c61225d5381dee5938c217b732.addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+            var circle_marker_3b37adb9cb83b092e4162e326e56bbea = L.circleMarker(
+                [-33.4489, -70.6693],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_0f267956068e400541b475839ad40134 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_c58d0756aa3456ba1a682ff89b95a300 = $(`<div id="html_c58d0756aa3456ba1a682ff89b95a300" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Santiago</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 52%<br>             <b>Clientes Totales:</b> 240,000<br>             <b>NSE Score:</b> +0.70         </div>         </div>`)[0];
+                popup_0f267956068e400541b475839ad40134.setContent(html_c58d0756aa3456ba1a682ff89b95a300);
+            
+        
+
+        circle_marker_3b37adb9cb83b092e4162e326e56bbea.bindPopup(popup_0f267956068e400541b475839ad40134)
+        ;
+
+        
+    
+    
+            circle_marker_3b37adb9cb83b092e4162e326e56bbea.bindTooltip(
+                `<div>
+                     Santiago: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1c54e00f9bda6245065718515f3e8c58 = L.circleMarker(
+                [-33.5, -70.7167],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_a3d82343327401cbeecb5abe8ffb5822 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_c9088b0a35bbf99fed1719520e780b39 = $(`<div id="html_c9088b0a35bbf99fed1719520e780b39" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Cerrillos</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 83%<br>             <b>Clientes Totales:</b> 45,000<br>             <b>NSE Score:</b> -0.40         </div>         </div>`)[0];
+                popup_a3d82343327401cbeecb5abe8ffb5822.setContent(html_c9088b0a35bbf99fed1719520e780b39);
+            
+        
+
+        circle_marker_1c54e00f9bda6245065718515f3e8c58.bindPopup(popup_a3d82343327401cbeecb5abe8ffb5822)
+        ;
+
+        
+    
+    
+            circle_marker_1c54e00f9bda6245065718515f3e8c58.bindTooltip(
+                `<div>
+                     Cerrillos: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_39c2837cb452f444e84ede9bb228268d = L.circleMarker(
+                [-33.4242, -70.7381],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_42ddfa80044d247e44ecb84097eaf51e = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_52a4d0467400a06fe61aef80182038ea = $(`<div id="html_52a4d0467400a06fe61aef80182038ea" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Cerro Navia</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 91%<br>             <b>Clientes Totales:</b> 48,000<br>             <b>NSE Score:</b> -1.80         </div>         </div>`)[0];
+                popup_42ddfa80044d247e44ecb84097eaf51e.setContent(html_52a4d0467400a06fe61aef80182038ea);
+            
+        
+
+        circle_marker_39c2837cb452f444e84ede9bb228268d.bindPopup(popup_42ddfa80044d247e44ecb84097eaf51e)
+        ;
+
+        
+    
+    
+            circle_marker_39c2837cb452f444e84ede9bb228268d.bindTooltip(
+                `<div>
+                     Cerro Navia: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_296e34c25209991981d93fcb4975ae62 = L.circleMarker(
+                [-33.3833, -70.6833],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_ec4ee266f871b3b341a2bd84fcf73a4e = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_d770f6bda39f991cfb7719ab84f119d0 = $(`<div id="html_d770f6bda39f991cfb7719ab84f119d0" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Conchalí</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 86%<br>             <b>Clientes Totales:</b> 52,000<br>             <b>NSE Score:</b> -0.70         </div>         </div>`)[0];
+                popup_ec4ee266f871b3b341a2bd84fcf73a4e.setContent(html_d770f6bda39f991cfb7719ab84f119d0);
+            
+        
+
+        circle_marker_296e34c25209991981d93fcb4975ae62.bindPopup(popup_ec4ee266f871b3b341a2bd84fcf73a4e)
+        ;
+
+        
+    
+    
+            circle_marker_296e34c25209991981d93fcb4975ae62.bindTooltip(
+                `<div>
+                     Conchalí: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0290987258ceed7bb0e3e242f4a1caee = L.circleMarker(
+                [-33.5667, -70.6833],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_ce1b92221b8ff84d382973e97e025ebc = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_65ab766f7ffd4c8d7679f36e666bbfa1 = $(`<div id="html_65ab766f7ffd4c8d7679f36e666bbfa1" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">El Bosque</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 91%<br>             <b>Clientes Totales:</b> 62,000<br>             <b>NSE Score:</b> -1.10         </div>         </div>`)[0];
+                popup_ce1b92221b8ff84d382973e97e025ebc.setContent(html_65ab766f7ffd4c8d7679f36e666bbfa1);
+            
+        
+
+        circle_marker_0290987258ceed7bb0e3e242f4a1caee.bindPopup(popup_ce1b92221b8ff84d382973e97e025ebc)
+        ;
+
+        
+    
+    
+            circle_marker_0290987258ceed7bb0e3e242f4a1caee.bindTooltip(
+                `<div>
+                     El Bosque: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2b0cabeb7fd909338f5e83a0b8164a42 = L.circleMarker(
+                [-33.4619, -70.7022],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_26512c84b5ccd92c5caf4242548334ea = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_d9035173e89e9f17d2e6b08fc54b1d71 = $(`<div id="html_d9035173e89e9f17d2e6b08fc54b1d71" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Estación Central</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 82%<br>             <b>Clientes Totales:</b> 75,000<br>             <b>NSE Score:</b> -0.30         </div>         </div>`)[0];
+                popup_26512c84b5ccd92c5caf4242548334ea.setContent(html_d9035173e89e9f17d2e6b08fc54b1d71);
+            
+        
+
+        circle_marker_2b0cabeb7fd909338f5e83a0b8164a42.bindPopup(popup_26512c84b5ccd92c5caf4242548334ea)
+        ;
+
+        
+    
+    
+            circle_marker_2b0cabeb7fd909338f5e83a0b8164a42.bindTooltip(
+                `<div>
+                     Estación Central: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_232d92119e3504385602616508738b6a = L.circleMarker(
+                [-33.3667, -70.65],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_9fe583422d8f05fa12214ea2b89edef4 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_f67a583541b226cbfd5aab111466857d = $(`<div id="html_f67a583541b226cbfd5aab111466857d" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Huechuraba</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 76%<br>             <b>Clientes Totales:</b> 39,000<br>             <b>NSE Score:</b> +0.20         </div>         </div>`)[0];
+                popup_9fe583422d8f05fa12214ea2b89edef4.setContent(html_f67a583541b226cbfd5aab111466857d);
+            
+        
+
+        circle_marker_232d92119e3504385602616508738b6a.bindPopup(popup_9fe583422d8f05fa12214ea2b89edef4)
+        ;
+
+        
+    
+    
+            circle_marker_232d92119e3504385602616508738b6a.bindTooltip(
+                `<div>
+                     Huechuraba: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c66c06156d77db96f1fa229d1a062fa7 = L.circleMarker(
+                [-33.4167, -70.6667],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_ab86fe524cd0aaf3d8826ed14c3d1fa6 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_07d3e2fd77ac75c7cedc9f99e61b2bd3 = $(`<div id="html_07d3e2fd77ac75c7cedc9f99e61b2bd3" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Independencia</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 80%<br>             <b>Clientes Totales:</b> 51,000<br>             <b>NSE Score:</b> -0.20         </div>         </div>`)[0];
+                popup_ab86fe524cd0aaf3d8826ed14c3d1fa6.setContent(html_07d3e2fd77ac75c7cedc9f99e61b2bd3);
+            
+        
+
+        circle_marker_c66c06156d77db96f1fa229d1a062fa7.bindPopup(popup_ab86fe524cd0aaf3d8826ed14c3d1fa6)
+        ;
+
+        
+    
+    
+            circle_marker_c66c06156d77db96f1fa229d1a062fa7.bindTooltip(
+                `<div>
+                     Independencia: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_60cfd6b3af937335ec25900f2801faee = L.circleMarker(
+                [-33.5333, -70.6667],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_e54fdb9536d694c7f29819e6b9c3a4cc = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_e337098bd8fb636375ffd5dd83caa8c4 = $(`<div id="html_e337098bd8fb636375ffd5dd83caa8c4" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">La Cisterna</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 82%<br>             <b>Clientes Totales:</b> 38,000<br>             <b>NSE Score:</b> -0.30         </div>         </div>`)[0];
+                popup_e54fdb9536d694c7f29819e6b9c3a4cc.setContent(html_e337098bd8fb636375ffd5dd83caa8c4);
+            
+        
+
+        circle_marker_60cfd6b3af937335ec25900f2801faee.bindPopup(popup_e54fdb9536d694c7f29819e6b9c3a4cc)
+        ;
+
+        
+    
+    
+            circle_marker_60cfd6b3af937335ec25900f2801faee.bindTooltip(
+                `<div>
+                     La Cisterna: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9aa6d90dc1ad70bf34d30c0d172f775d = L.circleMarker(
+                [-33.5333, -70.5833],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_0fa1ee299c3450d1bb79fb2821078921 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_05e42a4d837b086e041717c00e4fa0ff = $(`<div id="html_05e42a4d837b086e041717c00e4fa0ff" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">La Florida</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 74%<br>             <b>Clientes Totales:</b> 145,000<br>             <b>NSE Score:</b> +0.10         </div>         </div>`)[0];
+                popup_0fa1ee299c3450d1bb79fb2821078921.setContent(html_05e42a4d837b086e041717c00e4fa0ff);
+            
+        
+
+        circle_marker_9aa6d90dc1ad70bf34d30c0d172f775d.bindPopup(popup_0fa1ee299c3450d1bb79fb2821078921)
+        ;
+
+        
+    
+    
+            circle_marker_9aa6d90dc1ad70bf34d30c0d172f775d.bindTooltip(
+                `<div>
+                     La Florida: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_feeb2865db882d73f01d7d632c258333 = L.circleMarker(
+                [-33.5333, -70.6167],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_f2c4cc795899437ea73414dc08476c02 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_9c353076d4f15c7f1582480e6070a776 = $(`<div id="html_9c353076d4f15c7f1582480e6070a776" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">La Granja</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 94%<br>             <b>Clientes Totales:</b> 46,000<br>             <b>NSE Score:</b> -1.30         </div>         </div>`)[0];
+                popup_f2c4cc795899437ea73414dc08476c02.setContent(html_9c353076d4f15c7f1582480e6070a776);
+            
+        
+
+        circle_marker_feeb2865db882d73f01d7d632c258333.bindPopup(popup_f2c4cc795899437ea73414dc08476c02)
+        ;
+
+        
+    
+    
+            circle_marker_feeb2865db882d73f01d7d632c258333.bindTooltip(
+                `<div>
+                     La Granja: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1fc6a9341ec927a0e8be788519f93bb3 = L.circleMarker(
+                [-33.5833, -70.6333],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_10abf62797b64c07268c89fba9466120 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_446e3fe4843d64095e0053c76d95fb1f = $(`<div id="html_446e3fe4843d64095e0053c76d95fb1f" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">La Pintana</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 93%<br>             <b>Clientes Totales:</b> 61,000<br>             <b>NSE Score:</b> -2.10         </div>         </div>`)[0];
+                popup_10abf62797b64c07268c89fba9466120.setContent(html_446e3fe4843d64095e0053c76d95fb1f);
+            
+        
+
+        circle_marker_1fc6a9341ec927a0e8be788519f93bb3.bindPopup(popup_10abf62797b64c07268c89fba9466120)
+        ;
+
+        
+    
+    
+            circle_marker_1fc6a9341ec927a0e8be788519f93bb3.bindTooltip(
+                `<div>
+                     La Pintana: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_238c1e22543fff42bf0f99460ff174a2 = L.circleMarker(
+                [-33.45, -70.5333],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_1a0a6d750a182d0027ceb2fd0fde51e4 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_4d19adaf2af6c6adfe43cfa644cdb18e = $(`<div id="html_4d19adaf2af6c6adfe43cfa644cdb18e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">La Reina</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 48%<br>             <b>Clientes Totales:</b> 41,000<br>             <b>NSE Score:</b> +1.70         </div>         </div>`)[0];
+                popup_1a0a6d750a182d0027ceb2fd0fde51e4.setContent(html_4d19adaf2af6c6adfe43cfa644cdb18e);
+            
+        
+
+        circle_marker_238c1e22543fff42bf0f99460ff174a2.bindPopup(popup_1a0a6d750a182d0027ceb2fd0fde51e4)
+        ;
+
+        
+    
+    
+            circle_marker_238c1e22543fff42bf0f99460ff174a2.bindTooltip(
+                `<div>
+                     La Reina: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f5c7398b6c7d5dbb581650d94eecbba4 = L.circleMarker(
+                [-33.4, -70.55],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_2e524e8a6ed441ec9b73e724d7f50a48 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_44e33ff23731936736722c510b18ff45 = $(`<div id="html_44e33ff23731936736722c510b18ff45" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Las Condes</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 34%<br>             <b>Clientes Totales:</b> 155,000<br>             <b>NSE Score:</b> +2.30         </div>         </div>`)[0];
+                popup_2e524e8a6ed441ec9b73e724d7f50a48.setContent(html_44e33ff23731936736722c510b18ff45);
+            
+        
+
+        circle_marker_f5c7398b6c7d5dbb581650d94eecbba4.bindPopup(popup_2e524e8a6ed441ec9b73e724d7f50a48)
+        ;
+
+        
+    
+    
+            circle_marker_f5c7398b6c7d5dbb581650d94eecbba4.bindTooltip(
+                `<div>
+                     Las Condes: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_89f97bb9a43777ec07346ba10823b021 = L.circleMarker(
+                [-33.35, -70.5],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_fb3d3ad28fa0835a075ff99cea5e2d14 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_fcd5bbe52d7f30edfadca4101292b7d0 = $(`<div id="html_fcd5bbe52d7f30edfadca4101292b7d0" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Lo Barnechea</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 44%<br>             <b>Clientes Totales:</b> 43,000<br>             <b>NSE Score:</b> +2.10         </div>         </div>`)[0];
+                popup_fb3d3ad28fa0835a075ff99cea5e2d14.setContent(html_fcd5bbe52d7f30edfadca4101292b7d0);
+            
+        
+
+        circle_marker_89f97bb9a43777ec07346ba10823b021.bindPopup(popup_fb3d3ad28fa0835a075ff99cea5e2d14)
+        ;
+
+        
+    
+    
+            circle_marker_89f97bb9a43777ec07346ba10823b021.bindTooltip(
+                `<div>
+                     Lo Barnechea: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e18ca664f6d48c0811a7b4b368c8c841 = L.circleMarker(
+                [-33.5167, -70.7],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_0e3d1ac291211d692f3deaba30b4a402 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_1bac25054c8310d6a3862a670031fbb0 = $(`<div id="html_1bac25054c8310d6a3862a670031fbb0" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Lo Espejo</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 92%<br>             <b>Clientes Totales:</b> 37,000<br>             <b>NSE Score:</b> -1.90         </div>         </div>`)[0];
+                popup_0e3d1ac291211d692f3deaba30b4a402.setContent(html_1bac25054c8310d6a3862a670031fbb0);
+            
+        
+
+        circle_marker_e18ca664f6d48c0811a7b4b368c8c841.bindPopup(popup_0e3d1ac291211d692f3deaba30b4a402)
+        ;
+
+        
+    
+    
+            circle_marker_e18ca664f6d48c0811a7b4b368c8c841.bindTooltip(
+                `<div>
+                     Lo Espejo: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f4cba6664f274432c21e109a3ee8325b = L.circleMarker(
+                [-33.4442, -70.7253],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_9a55b7dc34d808980097ec5a3bf7bd8f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a3b4a3180914af79d34592521850f223 = $(`<div id="html_a3b4a3180914af79d34592521850f223" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Lo Prado</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 92%<br>             <b>Clientes Totales:</b> 40,000<br>             <b>NSE Score:</b> -1.20         </div>         </div>`)[0];
+                popup_9a55b7dc34d808980097ec5a3bf7bd8f.setContent(html_a3b4a3180914af79d34592521850f223);
+            
+        
+
+        circle_marker_f4cba6664f274432c21e109a3ee8325b.bindPopup(popup_9a55b7dc34d808980097ec5a3bf7bd8f)
+        ;
+
+        
+    
+    
+            circle_marker_f4cba6664f274432c21e109a3ee8325b.bindTooltip(
+                `<div>
+                     Lo Prado: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_63c8c56325c16b650c35f7db3d038a5f = L.circleMarker(
+                [-33.4833, -70.6],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_89818c7e1cd3c3b0a19ff08cfe891095 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a71e598a467c33e90221ad2cdcd93532 = $(`<div id="html_a71e598a467c33e90221ad2cdcd93532" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Macul</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 74%<br>             <b>Clientes Totales:</b> 49,000<br>             <b>NSE Score:</b> +0.30         </div>         </div>`)[0];
+                popup_89818c7e1cd3c3b0a19ff08cfe891095.setContent(html_a71e598a467c33e90221ad2cdcd93532);
+            
+        
+
+        circle_marker_63c8c56325c16b650c35f7db3d038a5f.bindPopup(popup_89818c7e1cd3c3b0a19ff08cfe891095)
+        ;
+
+        
+    
+    
+            circle_marker_63c8c56325c16b650c35f7db3d038a5f.bindTooltip(
+                `<div>
+                     Macul: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6e57868eb3f64173adbc00b8c354bca9 = L.circleMarker(
+                [-33.5167, -70.7667],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_3c4a6146c39797b612a8759c58f15d47 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_3d9ba32ed46d2bf9b548b527b994f6c5 = $(`<div id="html_3d9ba32ed46d2bf9b548b527b994f6c5" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Maipú</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 77%<br>             <b>Clientes Totales:</b> 185,000<br>             <b>NSE Score:</b> +0.00         </div>         </div>`)[0];
+                popup_3c4a6146c39797b612a8759c58f15d47.setContent(html_3d9ba32ed46d2bf9b548b527b994f6c5);
+            
+        
+
+        circle_marker_6e57868eb3f64173adbc00b8c354bca9.bindPopup(popup_3c4a6146c39797b612a8759c58f15d47)
+        ;
+
+        
+    
+    
+            circle_marker_6e57868eb3f64173adbc00b8c354bca9.bindTooltip(
+                `<div>
+                     Maipú: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_954205bf0b0fd2276c17c1f8c75c9790 = L.circleMarker(
+                [-33.45, -70.6],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_03250c69e2ce9bab2e0552d73ae64b9f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_25564cd812881b60843c8c2110fff66b = $(`<div id="html_25564cd812881b60843c8c2110fff66b" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Ñuñoa</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 58%<br>             <b>Clientes Totales:</b> 110,000<br>             <b>NSE Score:</b> +1.50         </div>         </div>`)[0];
+                popup_03250c69e2ce9bab2e0552d73ae64b9f.setContent(html_25564cd812881b60843c8c2110fff66b);
+            
+        
+
+        circle_marker_954205bf0b0fd2276c17c1f8c75c9790.bindPopup(popup_03250c69e2ce9bab2e0552d73ae64b9f)
+        ;
+
+        
+    
+    
+            circle_marker_954205bf0b0fd2276c17c1f8c75c9790.bindTooltip(
+                `<div>
+                     Ñuñoa: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0538696dfaf21d66e886457cf1dd7aba = L.circleMarker(
+                [-33.4833, -70.6667],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_5134b586a610abef0e4c20fa7f5bec4d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_aea7848c01751690bd0df950c9d76652 = $(`<div id="html_aea7848c01751690bd0df950c9d76652" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Pedro Aguirre Cerda</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 91%<br>             <b>Clientes Totales:</b> 41,000<br>             <b>NSE Score:</b> -1.10         </div>         </div>`)[0];
+                popup_5134b586a610abef0e4c20fa7f5bec4d.setContent(html_aea7848c01751690bd0df950c9d76652);
+            
+        
+
+        circle_marker_0538696dfaf21d66e886457cf1dd7aba.bindPopup(popup_5134b586a610abef0e4c20fa7f5bec4d)
+        ;
+
+        
+    
+    
+            circle_marker_0538696dfaf21d66e886457cf1dd7aba.bindTooltip(
+                `<div>
+                     Pedro Aguirre Cerda: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9a946d2d83e8929b50c6a45547ff58be = L.circleMarker(
+                [-33.4833, -70.5333],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_4b457406a8c5db79af3289c89a9debf8 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_658fc46d8d3e5fa9f59deb681b22e020 = $(`<div id="html_658fc46d8d3e5fa9f59deb681b22e020" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Peñalolén</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 79%<br>             <b>Clientes Totales:</b> 82,000<br>             <b>NSE Score:</b> -0.10         </div>         </div>`)[0];
+                popup_4b457406a8c5db79af3289c89a9debf8.setContent(html_658fc46d8d3e5fa9f59deb681b22e020);
+            
+        
+
+        circle_marker_9a946d2d83e8929b50c6a45547ff58be.bindPopup(popup_4b457406a8c5db79af3289c89a9debf8)
+        ;
+
+        
+    
+    
+            circle_marker_9a946d2d83e8929b50c6a45547ff58be.bindTooltip(
+                `<div>
+                     Peñalolén: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f6d4828102df0aac5760b98e67d94e33 = L.circleMarker(
+                [-33.4333, -70.6167],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_6c02bc00ee4cd58619949c3f0b884dba = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_1cf7dc402e0166ae639fa7a9d907ae4c = $(`<div id="html_1cf7dc402e0166ae639fa7a9d907ae4c" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Providencia</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 38%<br>             <b>Clientes Totales:</b> 98,000<br>             <b>NSE Score:</b> +2.00         </div>         </div>`)[0];
+                popup_6c02bc00ee4cd58619949c3f0b884dba.setContent(html_1cf7dc402e0166ae639fa7a9d907ae4c);
+            
+        
+
+        circle_marker_f6d4828102df0aac5760b98e67d94e33.bindPopup(popup_6c02bc00ee4cd58619949c3f0b884dba)
+        ;
+
+        
+    
+    
+            circle_marker_f6d4828102df0aac5760b98e67d94e33.bindTooltip(
+                `<div>
+                     Providencia: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_99b602eb8ee234d29004abb6547ebdb9 = L.circleMarker(
+                [-33.4333, -70.7833],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_59285c1c80d3d4d809f6d46af5f3b3fd = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_609193fc288f3eaf71cb28e580e7f75b = $(`<div id="html_609193fc288f3eaf71cb28e580e7f75b" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Pudahuel</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 84%<br>             <b>Clientes Totales:</b> 82,000<br>             <b>NSE Score:</b> -0.80         </div>         </div>`)[0];
+                popup_59285c1c80d3d4d809f6d46af5f3b3fd.setContent(html_609193fc288f3eaf71cb28e580e7f75b);
+            
+        
+
+        circle_marker_99b602eb8ee234d29004abb6547ebdb9.bindPopup(popup_59285c1c80d3d4d809f6d46af5f3b3fd)
+        ;
+
+        
+    
+    
+            circle_marker_99b602eb8ee234d29004abb6547ebdb9.bindTooltip(
+                `<div>
+                     Pudahuel: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5dadf3b31ebfddc18ff15b36990a9d62 = L.circleMarker(
+                [-33.3667, -70.7333],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_6dd962390ceb1366bed990e675800aaf = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_efa64e620e85133b5ddb70e640af9b6e = $(`<div id="html_efa64e620e85133b5ddb70e640af9b6e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Quilicura</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 83%<br>             <b>Clientes Totales:</b> 76,000<br>             <b>NSE Score:</b> -0.40         </div>         </div>`)[0];
+                popup_6dd962390ceb1366bed990e675800aaf.setContent(html_efa64e620e85133b5ddb70e640af9b6e);
+            
+        
+
+        circle_marker_5dadf3b31ebfddc18ff15b36990a9d62.bindPopup(popup_6dd962390ceb1366bed990e675800aaf)
+        ;
+
+        
+    
+    
+            circle_marker_5dadf3b31ebfddc18ff15b36990a9d62.bindTooltip(
+                `<div>
+                     Quilicura: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5a9135dbbf47f25783fdf30eaa83e19e = L.circleMarker(
+                [-33.4333, -70.7],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_eb76fcd34fe521b2d137d09fa472dfad = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_8e6b7db55fc7ff8fca763718c0c819cb = $(`<div id="html_8e6b7db55fc7ff8fca763718c0c819cb" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Quinta Normal</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 89%<br>             <b>Clientes Totales:</b> 47,000<br>             <b>NSE Score:</b> -0.90         </div>         </div>`)[0];
+                popup_eb76fcd34fe521b2d137d09fa472dfad.setContent(html_8e6b7db55fc7ff8fca763718c0c819cb);
+            
+        
+
+        circle_marker_5a9135dbbf47f25783fdf30eaa83e19e.bindPopup(popup_eb76fcd34fe521b2d137d09fa472dfad)
+        ;
+
+        
+    
+    
+            circle_marker_5a9135dbbf47f25783fdf30eaa83e19e.bindTooltip(
+                `<div>
+                     Quinta Normal: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_408076d37fbfde99d79d11d5d1ff870d = L.circleMarker(
+                [-33.4, -70.6333],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_9bee0d24c67333e4eafa563d9cf53b74 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_18d6fcc3f32fb026ec8e37b613457944 = $(`<div id="html_18d6fcc3f32fb026ec8e37b613457944" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Recoleta</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 85%<br>             <b>Clientes Totales:</b> 63,000<br>             <b>NSE Score:</b> -0.60         </div>         </div>`)[0];
+                popup_9bee0d24c67333e4eafa563d9cf53b74.setContent(html_18d6fcc3f32fb026ec8e37b613457944);
+            
+        
+
+        circle_marker_408076d37fbfde99d79d11d5d1ff870d.bindPopup(popup_9bee0d24c67333e4eafa563d9cf53b74)
+        ;
+
+        
+    
+    
+            circle_marker_408076d37fbfde99d79d11d5d1ff870d.bindTooltip(
+                `<div>
+                     Recoleta: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_336bdd839746a8ef37db174c9262d5f0 = L.circleMarker(
+                [-33.4, -70.7333],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_24eaf6c97c8c65b80b09cad676cf2e2b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_0df3caf93693df6dff26adb7d142fc63 = $(`<div id="html_0df3caf93693df6dff26adb7d142fc63" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Renca</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 88%<br>             <b>Clientes Totales:</b> 53,000<br>             <b>NSE Score:</b> -1.30         </div>         </div>`)[0];
+                popup_24eaf6c97c8c65b80b09cad676cf2e2b.setContent(html_0df3caf93693df6dff26adb7d142fc63);
+            
+        
+
+        circle_marker_336bdd839746a8ef37db174c9262d5f0.bindPopup(popup_24eaf6c97c8c65b80b09cad676cf2e2b)
+        ;
+
+        
+    
+    
+            circle_marker_336bdd839746a8ef37db174c9262d5f0.bindTooltip(
+                `<div>
+                     Renca: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f8fdec40d5188279db6224569881c367 = L.circleMarker(
+                [-33.5, -70.6333],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_0511f7c0622f17fb6cf7a643acaa1ad3 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_51290016f1aa55890de152ca20b676f5 = $(`<div id="html_51290016f1aa55890de152ca20b676f5" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">San Joaquín</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 85%<br>             <b>Clientes Totales:</b> 40,000<br>             <b>NSE Score:</b> -0.60         </div>         </div>`)[0];
+                popup_0511f7c0622f17fb6cf7a643acaa1ad3.setContent(html_51290016f1aa55890de152ca20b676f5);
+            
+        
+
+        circle_marker_f8fdec40d5188279db6224569881c367.bindPopup(popup_0511f7c0622f17fb6cf7a643acaa1ad3)
+        ;
+
+        
+    
+    
+            circle_marker_f8fdec40d5188279db6224569881c367.bindTooltip(
+                `<div>
+                     San Joaquín: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ffea70a356d4becce7cbdf81328e2b78 = L.circleMarker(
+                [-33.5, -70.65],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_8f5212773b8c076feae80b15826c7d86 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_4bd7f095a3918b3d02fc7fd9c8c026f4 = $(`<div id="html_4bd7f095a3918b3d02fc7fd9c8c026f4" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">San Miguel</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 68%<br>             <b>Clientes Totales:</b> 58,000<br>             <b>NSE Score:</b> +0.40         </div>         </div>`)[0];
+                popup_8f5212773b8c076feae80b15826c7d86.setContent(html_4bd7f095a3918b3d02fc7fd9c8c026f4);
+            
+        
+
+        circle_marker_ffea70a356d4becce7cbdf81328e2b78.bindPopup(popup_8f5212773b8c076feae80b15826c7d86)
+        ;
+
+        
+    
+    
+            circle_marker_ffea70a356d4becce7cbdf81328e2b78.bindTooltip(
+                `<div>
+                     San Miguel: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7b980c4060103c8ae94dd837408de3b1 = L.circleMarker(
+                [-33.5333, -70.65],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_dc76ba720aff33c73de922fb2e417499 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_3579d77dfffafdfd2d3fa0517f037f0b = $(`<div id="html_3579d77dfffafdfd2d3fa0517f037f0b" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">San Ramón</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 90%<br>             <b>Clientes Totales:</b> 34,000<br>             <b>NSE Score:</b> -1.70         </div>         </div>`)[0];
+                popup_dc76ba720aff33c73de922fb2e417499.setContent(html_3579d77dfffafdfd2d3fa0517f037f0b);
+            
+        
+
+        circle_marker_7b980c4060103c8ae94dd837408de3b1.bindPopup(popup_dc76ba720aff33c73de922fb2e417499)
+        ;
+
+        
+    
+    
+            circle_marker_7b980c4060103c8ae94dd837408de3b1.bindTooltip(
+                `<div>
+                     San Ramón: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8e3f6a8d0b7cde3575af5d4010bdbac6 = L.circleMarker(
+                [-33.3833, -70.5833],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_daf329dc583535fcce00f39ec892b057 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_fea724a68469e628ac1a46966c910f3e = $(`<div id="html_fea724a68469e628ac1a46966c910f3e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Vitacura</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 28%<br>             <b>Clientes Totales:</b> 46,000<br>             <b>NSE Score:</b> +2.50         </div>         </div>`)[0];
+                popup_daf329dc583535fcce00f39ec892b057.setContent(html_fea724a68469e628ac1a46966c910f3e);
+            
+        
+
+        circle_marker_8e3f6a8d0b7cde3575af5d4010bdbac6.bindPopup(popup_daf329dc583535fcce00f39ec892b057)
+        ;
+
+        
+    
+    
+            circle_marker_8e3f6a8d0b7cde3575af5d4010bdbac6.bindTooltip(
+                `<div>
+                     Vitacura: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c4e0508a29238dbcb777b63553456e3a = L.circleMarker(
+                [-33.6167, -70.5833],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_be5c3219c6029707df5c5bd84950565e = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_d2707050d36a90612e7b02284d22e2dd = $(`<div id="html_d2707050d36a90612e7b02284d22e2dd" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Puente Alto</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> CGE<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 82%<br>             <b>Clientes Totales:</b> 210,000<br>             <b>NSE Score:</b> -0.50         </div>         </div>`)[0];
+                popup_be5c3219c6029707df5c5bd84950565e.setContent(html_d2707050d36a90612e7b02284d22e2dd);
+            
+        
+
+        circle_marker_c4e0508a29238dbcb777b63553456e3a.bindPopup(popup_be5c3219c6029707df5c5bd84950565e)
+        ;
+
+        
+    
+    
+            circle_marker_c4e0508a29238dbcb777b63553456e3a.bindTooltip(
+                `<div>
+                     Puente Alto: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6c958691fb23bd1b769b053e726f00e3 = L.circleMarker(
+                [-33.6667, -70.5667],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_ac7c3ac041b7f2edb1daf02c1b467707 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_61bc9db7c3d0567f87fd32f8a030c625 = $(`<div id="html_61bc9db7c3d0567f87fd32f8a030c625" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Pirque</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> CGE<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 94%<br>             <b>Clientes Totales:</b> 12,000<br>             <b>NSE Score:</b> -0.20         </div>         </div>`)[0];
+                popup_ac7c3ac041b7f2edb1daf02c1b467707.setContent(html_61bc9db7c3d0567f87fd32f8a030c625);
+            
+        
+
+        circle_marker_6c958691fb23bd1b769b053e726f00e3.bindPopup(popup_ac7c3ac041b7f2edb1daf02c1b467707)
+        ;
+
+        
+    
+    
+            circle_marker_6c958691fb23bd1b769b053e726f00e3.bindTooltip(
+                `<div>
+                     Pirque: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6e59acfce24bfc60ffbe607d4c5e5f6d = L.circleMarker(
+                [-33.6333, -70.3667],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_42f151f3885a51ada62ea3fcdc603482 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_52e871ce933ad0d9436343dcb7bf5b91 = $(`<div id="html_52e871ce933ad0d9436343dcb7bf5b91" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">San José de Maipo</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> CGE<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 96%<br>             <b>Clientes Totales:</b> 9,000<br>             <b>NSE Score:</b> -0.40         </div>         </div>`)[0];
+                popup_42f151f3885a51ada62ea3fcdc603482.setContent(html_52e871ce933ad0d9436343dcb7bf5b91);
+            
+        
+
+        circle_marker_6e59acfce24bfc60ffbe607d4c5e5f6d.bindPopup(popup_42f151f3885a51ada62ea3fcdc603482)
+        ;
+
+        
+    
+    
+            circle_marker_6e59acfce24bfc60ffbe607d4c5e5f6d.bindTooltip(
+                `<div>
+                     San José de Maipo: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_76bbf529fa542e43428a757aa90fafee = L.circleMarker(
+                [-33.6, -70.7],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_d4b6227eb827c06c23d535de33f1d205 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a04190bc2c83a96aef5179c0d20c0ea5 = $(`<div id="html_a04190bc2c83a96aef5179c0d20c0ea5" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">San Bernardo</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> CGE<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 88%<br>             <b>Clientes Totales:</b> 115,000<br>             <b>NSE Score:</b> -0.80         </div>         </div>`)[0];
+                popup_d4b6227eb827c06c23d535de33f1d205.setContent(html_a04190bc2c83a96aef5179c0d20c0ea5);
+            
+        
+
+        circle_marker_76bbf529fa542e43428a757aa90fafee.bindPopup(popup_d4b6227eb827c06c23d535de33f1d205)
+        ;
+
+        
+    
+    
+            circle_marker_76bbf529fa542e43428a757aa90fafee.bindTooltip(
+                `<div>
+                     San Bernardo: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cf675150ecd0258481aeb6a3e344a2a7 = L.circleMarker(
+                [-33.7333, -70.7333],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_3907a3cd30179949e60819f62005cd38 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_46b2b1f5836871363cf98c083bacb87d = $(`<div id="html_46b2b1f5836871363cf98c083bacb87d" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Buin</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> CGE<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 98%<br>             <b>Clientes Totales:</b> 38,000<br>             <b>NSE Score:</b> -0.60         </div>         </div>`)[0];
+                popup_3907a3cd30179949e60819f62005cd38.setContent(html_46b2b1f5836871363cf98c083bacb87d);
+            
+        
+
+        circle_marker_cf675150ecd0258481aeb6a3e344a2a7.bindPopup(popup_3907a3cd30179949e60819f62005cd38)
+        ;
+
+        
+    
+    
+            circle_marker_cf675150ecd0258481aeb6a3e344a2a7.bindTooltip(
+                `<div>
+                     Buin: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7806d9081b3251bde3538fb9f1a93cc1 = L.circleMarker(
+                [-33.8167, -70.75],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_e9ad03d716e764acd653d0ec5a2f9bb2 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_3f4ae68c571bfba62dbf62514a1217ad = $(`<div id="html_3f4ae68c571bfba62dbf62514a1217ad" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Paine</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> CGE<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 95%<br>             <b>Clientes Totales:</b> 32,000<br>             <b>NSE Score:</b> -0.90         </div>         </div>`)[0];
+                popup_e9ad03d716e764acd653d0ec5a2f9bb2.setContent(html_3f4ae68c571bfba62dbf62514a1217ad);
+            
+        
+
+        circle_marker_7806d9081b3251bde3538fb9f1a93cc1.bindPopup(popup_e9ad03d716e764acd653d0ec5a2f9bb2)
+        ;
+
+        
+    
+    
+            circle_marker_7806d9081b3251bde3538fb9f1a93cc1.bindTooltip(
+                `<div>
+                     Paine: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6d3039ea7e280faed8ff0035c8c0ea80 = L.circleMarker(
+                [-33.2, -70.6833],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_3679d29531643e99fb5c7217e66fe800 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_5fdbdc7cedbc6a6b57ab9ffc7369c31e = $(`<div id="html_5fdbdc7cedbc6a6b57ab9ffc7369c31e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Colina</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 88%<br>             <b>Clientes Totales:</b> 49,000<br>             <b>NSE Score:</b> +0.30         </div>         </div>`)[0];
+                popup_3679d29531643e99fb5c7217e66fe800.setContent(html_5fdbdc7cedbc6a6b57ab9ffc7369c31e);
+            
+        
+
+        circle_marker_6d3039ea7e280faed8ff0035c8c0ea80.bindPopup(popup_3679d29531643e99fb5c7217e66fe800)
+        ;
+
+        
+    
+    
+            circle_marker_6d3039ea7e280faed8ff0035c8c0ea80.bindTooltip(
+                `<div>
+                     Colina: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_767ddc9071a4914d56acc21428880183 = L.circleMarker(
+                [-33.2833, -70.8833],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_4d6968c76eebfb4676a6f56d7a825a49 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a677b450a26141542573a089e10d6216 = $(`<div id="html_a677b450a26141542573a089e10d6216" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Lampa</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 98%<br>             <b>Clientes Totales:</b> 36,000<br>             <b>NSE Score:</b> -0.70         </div>         </div>`)[0];
+                popup_4d6968c76eebfb4676a6f56d7a825a49.setContent(html_a677b450a26141542573a089e10d6216);
+            
+        
+
+        circle_marker_767ddc9071a4914d56acc21428880183.bindPopup(popup_4d6968c76eebfb4676a6f56d7a825a49)
+        ;
+
+        
+    
+    
+            circle_marker_767ddc9071a4914d56acc21428880183.bindTooltip(
+                `<div>
+                     Lampa: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c4b2249a3a78934d849b1732e0b7802e = L.circleMarker(
+                [-33.0833, -70.9333],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_a06e3d616c3b85e939af8665517358cb = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_f819522815fdd6ab43f377ebac10914c = $(`<div id="html_f819522815fdd6ab43f377ebac10914c" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Til Til</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> ENEL<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 97%<br>             <b>Clientes Totales:</b> 8,500<br>             <b>NSE Score:</b> -1.00         </div>         </div>`)[0];
+                popup_a06e3d616c3b85e939af8665517358cb.setContent(html_f819522815fdd6ab43f377ebac10914c);
+            
+        
+
+        circle_marker_c4b2249a3a78934d849b1732e0b7802e.bindPopup(popup_a06e3d616c3b85e939af8665517358cb)
+        ;
+
+        
+    
+    
+            circle_marker_c4b2249a3a78934d849b1732e0b7802e.bindTooltip(
+                `<div>
+                     Til Til: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0383808414b4545f9f8610c8caeb33b1 = L.circleMarker(
+                [-33.6667, -70.9333],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_93525c07b1bfa8dbf0cfb37f7c48c2f1 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_e637f0c4ea5af833fda7cc4d33a76be2 = $(`<div id="html_e637f0c4ea5af833fda7cc4d33a76be2" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Talagante</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> CGE<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 98%<br>             <b>Clientes Totales:</b> 31,000<br>             <b>NSE Score:</b> -0.50         </div>         </div>`)[0];
+                popup_93525c07b1bfa8dbf0cfb37f7c48c2f1.setContent(html_e637f0c4ea5af833fda7cc4d33a76be2);
+            
+        
+
+        circle_marker_0383808414b4545f9f8610c8caeb33b1.bindPopup(popup_93525c07b1bfa8dbf0cfb37f7c48c2f1)
+        ;
+
+        
+    
+    
+            circle_marker_0383808414b4545f9f8610c8caeb33b1.bindTooltip(
+                `<div>
+                     Talagante: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_88d5573b64632adacb6764d6fd94676a = L.circleMarker(
+                [-33.6, -70.8833],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_745a7c38ecce48387625b7049d03649e = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a36288fb5d8aac475df2f52094ed38a2 = $(`<div id="html_a36288fb5d8aac475df2f52094ed38a2" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Peñaflor</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> CGE<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 97%<br>             <b>Clientes Totales:</b> 35,000<br>             <b>NSE Score:</b> -0.40         </div>         </div>`)[0];
+                popup_745a7c38ecce48387625b7049d03649e.setContent(html_a36288fb5d8aac475df2f52094ed38a2);
+            
+        
+
+        circle_marker_88d5573b64632adacb6764d6fd94676a.bindPopup(popup_745a7c38ecce48387625b7049d03649e)
+        ;
+
+        
+    
+    
+            circle_marker_88d5573b64632adacb6764d6fd94676a.bindTooltip(
+                `<div>
+                     Peñaflor: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2a0139bb89b419bac3c8d83884d85ce2 = L.circleMarker(
+                [-33.7, -71.2167],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_9d975e604b5f02ad1b2957a9d265fbe3 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_656a2d246c10bd25798690797153359d = $(`<div id="html_656a2d246c10bd25798690797153359d" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Melipilla</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> CGE<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 94%<br>             <b>Clientes Totales:</b> 45,000<br>             <b>NSE Score:</b> -1.00         </div>         </div>`)[0];
+                popup_9d975e604b5f02ad1b2957a9d265fbe3.setContent(html_656a2d246c10bd25798690797153359d);
+            
+        
+
+        circle_marker_2a0139bb89b419bac3c8d83884d85ce2.bindPopup(popup_9d975e604b5f02ad1b2957a9d265fbe3)
+        ;
+
+        
+    
+    
+            circle_marker_2a0139bb89b419bac3c8d83884d85ce2.bindTooltip(
+                `<div>
+                     Melipilla: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a4d6eae82bd0e7598d8281511dd3a438 = L.circleMarker(
+                [-33.6333, -70.7833],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_055f07efc21e4fab82e4b7588e2a6343 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_2804a6b54f78dc29160cf02f11375e04 = $(`<div id="html_2804a6b54f78dc29160cf02f11375e04" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Calera de Tango</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> CGE<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 90%<br>             <b>Clientes Totales:</b> 11,000<br>             <b>NSE Score:</b> +0.20         </div>         </div>`)[0];
+                popup_055f07efc21e4fab82e4b7588e2a6343.setContent(html_2804a6b54f78dc29160cf02f11375e04);
+            
+        
+
+        circle_marker_a4d6eae82bd0e7598d8281511dd3a438.bindPopup(popup_055f07efc21e4fab82e4b7588e2a6343)
+        ;
+
+        
+    
+    
+            circle_marker_a4d6eae82bd0e7598d8281511dd3a438.bindTooltip(
+                `<div>
+                     Calera de Tango: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d2a92e9e5aca37ce7726695e790c726a = L.circleMarker(
+                [-33.6833, -71.0167],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_522b22d3705587ee78ddd5cc0fb53832 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_e7f800211d92e226fbe4060f692d5771 = $(`<div id="html_e7f800211d92e226fbe4060f692d5771" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">El Monte</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> CGE<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 98%<br>             <b>Clientes Totales:</b> 14,000<br>             <b>NSE Score:</b> -1.00         </div>         </div>`)[0];
+                popup_522b22d3705587ee78ddd5cc0fb53832.setContent(html_e7f800211d92e226fbe4060f692d5771);
+            
+        
+
+        circle_marker_d2a92e9e5aca37ce7726695e790c726a.bindPopup(popup_522b22d3705587ee78ddd5cc0fb53832)
+        ;
+
+        
+    
+    
+            circle_marker_d2a92e9e5aca37ce7726695e790c726a.bindTooltip(
+                `<div>
+                     El Monte: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_415f34bb68652df07dc56829c61f858a = L.circleMarker(
+                [-33.75, -70.9],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_79206e62908c7082047e72cf61e46554 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_20de81699f6e745ad95d30ebcbd198b8 = $(`<div id="html_20de81699f6e745ad95d30ebcbd198b8" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Isla de Maipo</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> CGE<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 98%<br>             <b>Clientes Totales:</b> 16,000<br>             <b>NSE Score:</b> -0.70         </div>         </div>`)[0];
+                popup_79206e62908c7082047e72cf61e46554.setContent(html_20de81699f6e745ad95d30ebcbd198b8);
+            
+        
+
+        circle_marker_415f34bb68652df07dc56829c61f858a.bindPopup(popup_79206e62908c7082047e72cf61e46554)
+        ;
+
+        
+    
+    
+            circle_marker_415f34bb68652df07dc56829c61f858a.bindTooltip(
+                `<div>
+                     Isla de Maipo: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_80ce56b98c28e685a2a279efa677aac9 = L.circleMarker(
+                [-33.5667, -70.8167],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_469fe46e764a6ed4678c3f60cb4daa86 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_7025ce2f9ece5f20c5a1143a9dc22fcd = $(`<div id="html_7025ce2f9ece5f20c5a1143a9dc22fcd" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Padre Hurtado</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> CGE<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 98%<br>             <b>Clientes Totales:</b> 26,000<br>             <b>NSE Score:</b> -0.50         </div>         </div>`)[0];
+                popup_469fe46e764a6ed4678c3f60cb4daa86.setContent(html_7025ce2f9ece5f20c5a1143a9dc22fcd);
+            
+        
+
+        circle_marker_80ce56b98c28e685a2a279efa677aac9.bindPopup(popup_469fe46e764a6ed4678c3f60cb4daa86)
+        ;
+
+        
+    
+    
+            circle_marker_80ce56b98c28e685a2a279efa677aac9.bindTooltip(
+                `<div>
+                     Padre Hurtado: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_64b115068889e8f52fad588e213a5bab = L.circleMarker(
+                [-34.0333, -71.1],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_6054edb1daea784ca994377fdca1c575 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_0e8e99c86e8f6c16ed735be91e9f9fd8 = $(`<div id="html_0e8e99c86e8f6c16ed735be91e9f9fd8" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Alhué</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> CGE<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 98%<br>             <b>Clientes Totales:</b> 35,000<br>             <b>NSE Score:</b> -1.20         </div>         </div>`)[0];
+                popup_6054edb1daea784ca994377fdca1c575.setContent(html_0e8e99c86e8f6c16ed735be91e9f9fd8);
+            
+        
+
+        circle_marker_64b115068889e8f52fad588e213a5bab.bindPopup(popup_6054edb1daea784ca994377fdca1c575)
+        ;
+
+        
+    
+    
+            circle_marker_64b115068889e8f52fad588e213a5bab.bindTooltip(
+                `<div>
+                     Alhué: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3c058b60dc012fa4337be3ebd5422061 = L.circleMarker(
+                [-33.4, -71.1333],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_5063289ac4100d09377d8ddc97bb3a0a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_f38f4e8af430bef1bcec704cc45a479e = $(`<div id="html_f38f4e8af430bef1bcec704cc45a479e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">Curacaví</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> CGE<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 98%<br>             <b>Clientes Totales:</b> 18,000<br>             <b>NSE Score:</b> -0.60         </div>         </div>`)[0];
+                popup_5063289ac4100d09377d8ddc97bb3a0a.setContent(html_f38f4e8af430bef1bcec704cc45a479e);
+            
+        
+
+        circle_marker_3c058b60dc012fa4337be3ebd5422061.bindPopup(popup_5063289ac4100d09377d8ddc97bb3a0a)
+        ;
+
+        
+    
+    
+            circle_marker_3c058b60dc012fa4337be3ebd5422061.bindTooltip(
+                `<div>
+                     Curacaví: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_857ab9ac99c6215ec1b9ced896fc7c06 = L.circleMarker(
+                [-33.5167, -71.1167],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_bd5090ee707280e95b55b9621e6159a5 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_9868a5ae9e53955dd5985cfef1352418 = $(`<div id="html_9868a5ae9e53955dd5985cfef1352418" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">María Pinto</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> CGE<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 98%<br>             <b>Clientes Totales:</b> 6,000<br>             <b>NSE Score:</b> -1.10         </div>         </div>`)[0];
+                popup_bd5090ee707280e95b55b9621e6159a5.setContent(html_9868a5ae9e53955dd5985cfef1352418);
+            
+        
+
+        circle_marker_857ab9ac99c6215ec1b9ced896fc7c06.bindPopup(popup_bd5090ee707280e95b55b9621e6159a5)
+        ;
+
+        
+    
+    
+            circle_marker_857ab9ac99c6215ec1b9ced896fc7c06.bindTooltip(
+                `<div>
+                     María Pinto: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b65aebcc6ce586846e8ba5e15045fb4c = L.circleMarker(
+                [-33.9, -71.45],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f39c12", "fillOpacity": 0.65, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3, "stroke": true, "weight": 2}
+            ).addTo(map_ee47cf8aab557600f42f056687b301a3);
+        
+    
+        var popup_6117140ea7748f39165d53dc7e5618f2 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_30e69d74db8f500a6e693995d37fa5c6 = $(`<div id="html_30e69d74db8f500a6e693995d37fa5c6" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; font-size: 12px; width: 220px;">             <h4 style="margin: 0 0 5px 0; color: #2c3e50;">San Pedro</h4>             <hr style="margin: 2px 0 6px 0;">             <b>Distribuidora:</b> CGE<br>             <b>Prob. Colapso:</b> <span style="color: #f39c12; font-weight: bold;">45.0%</span><br>             <b>Red Aérea Expuesta:</b> 98%<br>             <b>Clientes Totales:</b> 4,500<br>             <b>NSE Score:</b> -1.30         </div>         </div>`)[0];
+                popup_6117140ea7748f39165d53dc7e5618f2.setContent(html_30e69d74db8f500a6e693995d37fa5c6);
+            
+        
+
+        circle_marker_b65aebcc6ce586846e8ba5e15045fb4c.bindPopup(popup_6117140ea7748f39165d53dc7e5618f2)
+        ;
+
+        
+    
+    
+            circle_marker_b65aebcc6ce586846e8ba5e15045fb4c.bindTooltip(
+                `<div>
+                     San Pedro: 45.0% riesgo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>

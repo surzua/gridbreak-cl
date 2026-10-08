@@ -12,7 +12,7 @@
 | **Fase 1** | **Cimientos, Modelo Base y MVP Funcional** | `100% COMPLETADO` ✅ | uv stack, config Pydantic, seed benchmark 2024, GLM logit, Streamlit app, tests pytest. |
 | **Fase 2** | **Ingesta Dual y Telemetría en Vivo** | `100% COMPLETADO` ✅ | Live SEC Collector (`sec_collector.py`), DMC & Open-Meteo Client (`dmc_client.py`), IDW Spatial Join (`spatial_join.py`), Orquestador (`live_pipeline.py`), CLI `gridbreak-cl ingest-live`, Streamlit dual mode, 13 tests. |
 | **Fase 3** | **Modelamiento Causal Avanzado (Supervivencia)** | `100% COMPLETADO` ✅ | Feature pipeline (`build_features.py`), Kaplan-Meier estratificado, Log-Rank test ($p < 0.001$), Cox PH con penalización L2 (`survival_analysis.py`), Hazard Ratios, Concordance $C=0.90$, Streamlit modo supervivencia y 20 tests unitarios. |
-| **Fase 4** | **Jupyter Notebooks de Evidencia y Visualización** | `PENDIENTE` ⏳ | Notebooks de EDA y modelamiento, gráficos estáticos listos para publicación técnica. |
+| **Fase 4** | **Jupyter Notebooks de Evidencia y Visualización** | `100% COMPLETADO` ✅ | Notebooks ejecutados (`01_eda`, `02_modelamiento`), figuras 300 DPI (`reports/figures/`), mapas interactivos Folium (`reports/maps/`), módulos `static_charts.py` y `map_generator.py`, 24 tests. |
 | **Fase 5** | **Storytelling de Alto Impacto y Despliegue** | `PENDIENTE` ⏳ | Estrategia LinkedIn, exportación de assets visuales, despliegue en la nube (Streamlit Cloud). |
 
 ---
@@ -134,17 +134,22 @@ flowchart TD
 
 ---
 
-### ⚪ Fase 4: Cuadernos de Evidencia (Jupyter Notebooks) y Gráficos Estáticos
+### 🟢 Fase 4: Cuadernos de Evidencia (Jupyter Notebooks) y Gráficos Estáticos *(Completado y Validado)*
 *Objetivo: Documentar paso a paso la investigación para revisión técnica y generación de figuras de alta resolución.*
 
-- [ ] **4.1 `notebooks/01_eda_precipitaciones_viento_vs_cortes.ipynb`:**
-  - Análisis exploratorio de datos de los temporales 2024.
-  - Correlaciones bivariadas, dispersión de ráfagas vs. número de clientes sin luz.
-- [ ] **4.2 `notebooks/02_modelamiento_curvas_fragilidad.ipynb`:**
-  - Diagnóstico de coeficientes GLM ($p$-values, pseudo-$R^2$, bondad de ajuste).
-  - Curvas sigmoides comparativas por terciles de ingreso (Vulnerable vs. Medio vs. Alto).
-- [ ] **4.3 Módulo de Visualizaciones Publicables (`src/gridbreak_cl/visualization/`):**
-  - Generación de gráficos estáticos vectoriales / PNG listos para presentaciones y redes sociales.
+- [x] **4.1 `notebooks/01_eda_precipitaciones_viento_vs_cortes.ipynb`:**
+  - Análisis exploratorio de datos de los temporales 2024 con salidas pre-renderizadas.
+  - Matriz de correlación bivariada y multivariada, boxplots y gráficos de barras por terciles de NSE.
+  - Comparativa de afectación entre concesionarias Enel y CGE.
+- [x] **4.2 `notebooks/02_modelamiento_curvas_fragilidad.ipynb`:**
+  - Ajuste del modelo GLM logístico bivariado (McFadden $R^2 = 0.686$).
+  - Curvas de fragilidad sigmoideas y cálculo analítico exacto de umbrales críticos ($R_{50}$ y $W_{50}$).
+  - Estimación no paramétrica de supervivencia Kaplan-Meier y prueba de Log-Rank ($p = 3.8 \times 10^{-15}$).
+  - Modelo de Cox Proportional Hazards ($C = 0.90$) y visualización de Hazard Ratios con Forest Plot.
+- [x] **4.3 Módulo de Visualizaciones Publicables (`src/gridbreak_cl/visualization/`):**
+  - `static_charts.py`: Generador de 4 figuras editoriales de 300 DPI en `reports/figures/`.
+  - `map_generator.py`: Generador de mapas interactivos HTML Leaflet/Folium con OpenStreetMap en `reports/maps/`.
+  - 4 pruebas unitarias adicionales en `tests/test_visualization.py` (24 tests pasando).
 
 ---
 
