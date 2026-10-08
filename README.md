@@ -54,7 +54,8 @@ gridbreak-cl/
 │   └── processed/
 │       └── benchmark_temporales_2024.parquet # Dataset panel horario RM (Temporales 2024)
 ├── docs/
-│   └── El Umbral del Apagón - Blueprint y Especificación Técnica.md
+│   ├── El Umbral del Apagón - Blueprint y Especificación Técnica.md
+│   └── ROADMAP.md             # Guía paso a paso y seguimiento de hitos del proyecto
 ├── src/gridbreak_cl/
 │   ├── __init__.py
 │   ├── config.py              # Esquemas y validación con Pydantic
