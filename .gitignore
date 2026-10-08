@@ -11,3 +11,8 @@ wheels/
 
 # macOS files
 .DS_Store
+
+# Data directories (raw / interim)
+data/raw/
+data/interim/
+

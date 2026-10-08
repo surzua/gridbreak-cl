@@ -3,22 +3,36 @@ project:
   name: "gridbreak-cl"
   version: "0.1.0"
   region: "Región Metropolitana de Santiago"
+  timezone: "America/Santiago"
   crs_default: "EPSG:4326"
   crs_projected: "EPSG:32719" # UTM 19S para cálculo de distancias métricas en RM
 
 data_paths:
   raw: "data/raw"
+  raw_sec: "data/raw/sec"
+  raw_weather: "data/raw/weather"
   interim: "data/interim"
   processed: "data/processed"
   benchmark_file: "data/processed/benchmark_temporales_2024.parquet"
+  live_latest_file: "data/processed/live_latest.parquet"
 
 modeling:
   critical_outage_threshold_alpha: 0.05 # 5% de desconexión comunal
   baseline_wind_gust_kmh: 40.0
   baseline_rain_mm: 20.0
+  idw_power: 2.0 # Exponente para ponderación inversa a la distancia
 
 sources:
-  sec_endpoint_url: "https://interrupciones.sec.cl/api/estado-clientes"
+  sec_base_url: "https://apps.sec.cl/INTONLINEv1"
+  sec_endpoint_por_fecha: "https://apps.sec.cl/INTONLINEv1/ClientesAfectados/GetPorFecha"
+  sec_endpoint_hora_server: "https://apps.sec.cl/INTONLINEv1/ClientesAfectados/GetHoraServer"
+  sec_endpoint_clientes_regional: "https://apps.sec.cl/INTONLINEv1/ClientesAfectados/GetClientesRegional"
+  sec_endpoint_resumen_nacional: "https://apps.sec.cl/INTONLINEv1/ClientesAfectados/Get"
+  
+  weather_provider_default: "open-meteo" # "open-meteo" (público sin token) o "dmc" (requiere token)
+  open_meteo_url: "https://api.open-meteo.com/v1/forecast"
+  dmc_api_url: "https://climatologia.meteochile.gob.cl/application/servicios/getDatosRecientesRedEma"
+  
   dmc_reference_stations:
     - codigo: "330020"
       nombre: "Quinta Normal"
@@ -40,3 +54,4 @@ sources:
       nombre: "Talagante"
       lat: -33.6653
       lon: -70.9328
+

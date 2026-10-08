@@ -8,9 +8,9 @@
 ## 📊 Resumen Ejecutivo del Estado del Proyecto
 
 | Fase | Descripción | Estado | Cobertura / Entregables |
-| :--- | :--- | :---: | :--- |
+| :--- | :--- | :--- | :--- |
 | **Fase 1** | **Cimientos, Modelo Base y MVP Funcional** | `100% COMPLETADO` ✅ | uv stack, config Pydantic, seed benchmark 2024, GLM logit, Streamlit app, tests pytest. |
-| **Fase 2** | **Ingesta Dual y Telemetría en Vivo** | `PENDIENTE` ⏳ | Live collector SEC (`sec_collector.py`), cliente DMC (`dmc_client.py`), spatial join IDW. |
+| **Fase 2** | **Ingesta Dual y Telemetría en Vivo** | `100% COMPLETADO` ✅ | Live SEC Collector (`sec_collector.py`), DMC & Open-Meteo Client (`dmc_client.py`), IDW Spatial Join (`spatial_join.py`), Orquestador (`live_pipeline.py`), CLI `gridbreak-cl ingest-live`, Streamlit dual mode, 13 tests. |
 | **Fase 3** | **Modelamiento Causal Avanzado (Supervivencia)** | `PENDIENTE` ⏳ | Modelo Cox Proportional Hazards (`survival_analysis.py`), Hazard Ratios tiempo al colapso. |
 | **Fase 4** | **Jupyter Notebooks de Evidencia y Visualización** | `PENDIENTE` ⏳ | Notebooks de EDA y modelamiento, gráficos estáticos listos para publicación técnica. |
 | **Fase 5** | **Storytelling de Alto Impacto y Despliegue** | `PENDIENTE` ⏳ | Estrategia LinkedIn, exportación de assets visuales, despliegue en la nube (Streamlit Cloud). |
@@ -28,10 +28,15 @@ flowchart TD
         A4 --> A5[Simulador Streamlit y Tests]
     end
 
-    subgraph F2["Fase 2: Ingesta Dual y Datos Reales"]
-        B1[sec_collector.py Live Snapshots]
-        B2[dmc_client.py Estaciones Meteorológicas]
+    subgraph F2["Fase 2: Ingesta Dual y Telemetría en Vivo (Completado)"]
+        B1[sec_collector.py Endpoint Real AJAX + Padrón 52 Comunas]
+        B2[dmc_client.py Cliente Híbrido DMC/Open-Meteo]
         B3[spatial_join.py Interpolación Geoespacial IDW]
+        B4[live_pipeline.py Orquestador Consolidado Parquet]
+        B5[CLI gridbreak-cl + Streamlit Modo En Vivo]
+        B1 --> B4
+        B2 --> B3 --> B4
+        B4 --> B5
     end
 
     subgraph F3["Fase 3: Modelos Causales Avanzados"]
@@ -52,7 +57,7 @@ flowchart TD
     end
 
     F1 --> F2
-    F1 --> F3
+    F2 --> F3
     F3 --> F4
     F4 --> F5
 ```
@@ -76,18 +81,33 @@ flowchart TD
 
 ---
 
-### 🟡 Fase 2: Ingesta Dual y Telemetría en Vivo *(Próximo Hito)*
-*Objetivo: Permitir que el sistema no solo funcione con el benchmark histórico, sino que capture y procese datos reales durante eventos climáticos activos.*
+### 🟢 Fase 2: Ingesta Dual y Telemetría en Vivo *(Completado y Operativo)*
+*Objetivo: Permitir que el sistema capture y procese datos reales durante eventos climáticos activos o consulte telemetría en tiempo real de la RM.*
 
-- [ ] **2.1 Live SEC Collector (`src/gridbreak_cl/etl/sec_collector.py`):**
-  - Scraping / consumo del endpoint público de interrupciones de la SEC.
-  - Persistencia incremental de snapshots horarios en `data/raw/sec/`.
-  - Manejo de reintentos con backoff exponencial.
-- [ ] **2.2 DMC Weather Client (`src/gridbreak_cl/etl/dmc_client.py`):**
-  - Ingesta de datos de estaciones de referencia de la DMC (Quinta Normal, Tobalaba, Pudahuel, etc.).
-  - Parsing de variables: precipitación horaria, viento sostenido y ráfaga máxima.
-- [ ] **2.3 Cruce Geoespacial (`src/gridbreak_cl/etl/spatial_join.py`):**
-  - Interpolación espacial inversa a la distancia (IDW) o asignación por polígonos de Voronoi para asignar métricas climáticas a centroides comunales usando `GeoPandas` y `Shapely`.
+- [x] **2.1 Live SEC Collector (`src/gridbreak_cl/etl/sec_collector.py`):**
+  - Consumo directo de la API AJAX real en producción de la SEC (`apps.sec.cl/INTONLINEv1/ClientesAfectados/GetPorFecha`).
+  - Normalización canónica de nombres de comunas y diccionario fonético-ortográfico de las 52 comunas de la RM.
+  - Cruce automático con el padrón base regulado de clientes totales y empresa concesionaria (`ENEL` / `CGE`).
+  - Persistencia incremental de snapshots horarios en `data/raw/sec/` con política de reintentos y backoff exponencial.
+  - Validación estricta con Pydantic (`SECCutRecord`).
+- [x] **2.2 DMC Weather Client (`src/gridbreak_cl/etl/dmc_client.py`):**
+  - Cliente meteorológico híbrido: soporte para API oficial de la DMC (con token) y fallback automático a Open-Meteo (API pública sin token) para las 5 estaciones de referencia de la RM (Quinta Normal, Tobalaba, Pudahuel, La Florida, Talagante).
+  - Telemetría horaria: precipitación acumulada (`precipitacion_mm`), velocidad sostenida (`viento_kmh`) y ráfaga máxima (`rafaga_max_kmh`).
+  - Persistencia incremental en `data/raw/weather/` y modo offline fixture para CI/CD.
+  - Validación con Pydantic (`WeatherRecord`).
+- [x] **2.3 Cruce Geoespacial IDW (`src/gridbreak_cl/etl/spatial_join.py`):**
+  - Ponderación espacial inversa a la distancia (IDW) con potencia calibrada ($p=2.0$) y distancia de Haversine geodésica.
+  - Asignación sobre centroides de cabeceras urbanas/poblacionales de las 52 comunas de la RM.
+  - Asignación de estación de referencia más cercana (Voronoi nearest) y distancia métrica en kilómetros.
+- [x] **2.4 Pipeline Orquestador (`src/gridbreak_cl/etl/live_pipeline.py`):**
+  - Ejecución sincronizada y alineación temporal con `ZoneInfo("America/Santiago")`.
+  - Enriquecimiento con features del modelo (`rafaga_cuadratica`, `precip_x_nse`, `rafaga_x_nse`, `es_cge`).
+  - Persistencia unificada en `data/processed/live_latest.parquet` y registro histórico en `live_telemetry_history.parquet`.
+- [x] **2.5 CLI y Streamlit Dual Mode:**
+  - CLI `gridbreak-cl ingest-live` accesible vía terminal.
+  - Pestaña de **Telemetría en Vivo** integrada en `app/streamlit_app.py`, permitiendo monitorear clientes sin luz reales por comuna, correlación con viento y lluvia observada y diagnóstico de realidad vs. predicción GLM.
+- [x] **2.6 Suite de Tests Automatizados (`tests/test_etl.py`):**
+  - 13 pruebas unitarias pasando (normalización SEC, backoff y reintentos ante error HTTP, IDW propiedades físicas, cliente meteorológico offline, pipeline end-to-end).
 
 ---
 
