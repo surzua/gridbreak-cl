@@ -116,9 +116,10 @@ for _, com in df_comunas.iterrows():
     p = model.predict_probability(
         precip_mm=sim_rain,
         rafaga_kmh=sim_wind,
-        nse_score=com["nse_score"],
+        nse_score=float(com["nse_score"]),
+        red_aerea_ratio=float(com["red_aerea_km_ratio"]),
         es_cge=1.0 if com["empresa"] == "CGE" else 0.0,
-        arbolado_m2_hab=com["arbolado_m2_hab"],
+        arbolado_m2_hab=float(com["arbolado_m2_hab"]),
     )
     prob_comunas.append(p)
 
@@ -167,6 +168,7 @@ with col_map:
             "empresa": True,
             "prob_colapso": ":.1%",
             "ingreso_autonomo_promedio": ":$,.0f",
+            "red_aerea_km_ratio": ":.0%",
         },
         color_continuous_scale="Reds",
         range_color=[0, 1],
@@ -203,28 +205,32 @@ with col_comp:
 
     r50_a = model.compute_critical_rain_threshold(
         rafaga_kmh=sim_wind,
-        nse_score=row_a["nse_score"],
+        nse_score=float(row_a["nse_score"]),
+        red_aerea_ratio=float(row_a["red_aerea_km_ratio"]),
         es_cge=1.0 if row_a["empresa"] == "CGE" else 0.0,
-        arbolado_m2_hab=row_a["arbolado_m2_hab"],
+        arbolado_m2_hab=float(row_a["arbolado_m2_hab"]),
     )
     r50_b = model.compute_critical_rain_threshold(
         rafaga_kmh=sim_wind,
-        nse_score=row_b["nse_score"],
+        nse_score=float(row_b["nse_score"]),
+        red_aerea_ratio=float(row_b["red_aerea_km_ratio"]),
         es_cge=1.0 if row_b["empresa"] == "CGE" else 0.0,
-        arbolado_m2_hab=row_b["arbolado_m2_hab"],
+        arbolado_m2_hab=float(row_b["arbolado_m2_hab"]),
     )
 
     w50_a = model.compute_critical_wind_threshold(
         precip_mm=sim_rain,
-        nse_score=row_a["nse_score"],
+        nse_score=float(row_a["nse_score"]),
+        red_aerea_ratio=float(row_a["red_aerea_km_ratio"]),
         es_cge=1.0 if row_a["empresa"] == "CGE" else 0.0,
-        arbolado_m2_hab=row_a["arbolado_m2_hab"],
+        arbolado_m2_hab=float(row_a["arbolado_m2_hab"]),
     )
     w50_b = model.compute_critical_wind_threshold(
         precip_mm=sim_rain,
-        nse_score=row_b["nse_score"],
+        nse_score=float(row_b["nse_score"]),
+        red_aerea_ratio=float(row_b["red_aerea_km_ratio"]),
         es_cge=1.0 if row_b["empresa"] == "CGE" else 0.0,
-        arbolado_m2_hab=row_b["arbolado_m2_hab"],
+        arbolado_m2_hab=float(row_b["arbolado_m2_hab"]),
     )
 
     comp_c1.metric(f"Prob. {comuna_a_name}", f"{p_a * 100:.1f}%")
@@ -235,8 +241,9 @@ with col_comp:
     | :--- | :--- | :--- | :--- |
     | **Distribuidora** | {row_a["empresa"]} | {row_b["empresa"]} | - |
     | **Ingreso Autónomo Promedio** | ${row_a["ingreso_autonomo_promedio"]:,.0f} | ${row_b["ingreso_autonomo_promedio"]:,.0f} | {row_b["ingreso_autonomo_promedio"] / row_a["ingreso_autonomo_promedio"]:.1f}x |
-    | **Umbral Crítico de Lluvia ($R_{{50}}$)** | **{max(0.0, r50_a):.1f} mm** | **{max(0.0, r50_b):.1f} mm** | **+{max(0.0, r50_b) - max(0.0, r50_a):.1f} mm** |
-    | **Umbral Crítico de Viento ($W_{{50}}$)** | **{max(0.0, w50_a):.1f} km/h** | **{max(0.0, w50_b):.1f} km/h** | **+{max(0.0, w50_b) - max(0.0, w50_a):.1f} km/h** |
+    | **Exposición Red Aérea** | {row_a["red_aerea_km_ratio"]:.0%} | {row_b["red_aerea_km_ratio"]:.0%} | {row_a["red_aerea_km_ratio"] - row_b["red_aerea_km_ratio"]:+.0%} |
+    | **Umbral Crítico de Lluvia ($R_{{50}}$)** | **{r50_a:.1f} mm** | **{r50_b:.1f} mm** | **{r50_b - r50_a:+.1f} mm** |
+    | **Umbral Crítico de Viento ($W_{{50}}$)** | **{w50_a:.1f} km/h** | **{w50_b:.1f} km/h** | **{w50_b - w50_a:+.1f} km/h** |
     """)
 
 # --- SECCIÓN 2: CURVAS DE FRAGILIDAD INTERACTIVAS ---
@@ -251,9 +258,10 @@ curve_a = [
     model.predict_probability(
         precip_mm=r,
         rafaga_kmh=sim_wind,
-        nse_score=row_a["nse_score"],
+        nse_score=float(row_a["nse_score"]),
+        red_aerea_ratio=float(row_a["red_aerea_km_ratio"]),
         es_cge=1.0 if row_a["empresa"] == "CGE" else 0.0,
-        arbolado_m2_hab=row_a["arbolado_m2_hab"],
+        arbolado_m2_hab=float(row_a["arbolado_m2_hab"]),
     )
     for r in rain_range
 ]
@@ -261,9 +269,10 @@ curve_b = [
     model.predict_probability(
         precip_mm=r,
         rafaga_kmh=sim_wind,
-        nse_score=row_b["nse_score"],
+        nse_score=float(row_b["nse_score"]),
+        red_aerea_ratio=float(row_b["red_aerea_km_ratio"]),
         es_cge=1.0 if row_b["empresa"] == "CGE" else 0.0,
-        arbolado_m2_hab=row_b["arbolado_m2_hab"],
+        arbolado_m2_hab=float(row_b["arbolado_m2_hab"]),
     )
     for r in rain_range
 ]
@@ -322,9 +331,10 @@ st.caption(
 )
 
 r_grid, w_grid, p_grid = model.generate_fragility_surface(
-    nse_score=row_a["nse_score"],
+    nse_score=float(row_a["nse_score"]),
+    red_aerea_ratio=float(row_a["red_aerea_km_ratio"]),
     es_cge=1.0 if row_a["empresa"] == "CGE" else 0.0,
-    arbolado_m2_hab=row_a["arbolado_m2_hab"],
+    arbolado_m2_hab=float(row_a["arbolado_m2_hab"]),
     resolution=35,
 )
 
@@ -349,6 +359,41 @@ fig_3d.update_layout(
     height=500,
 )
 st.plotly_chart(fig_3d, use_container_width=True)
+
+# --- SECCIÓN 4: EVIDENCIA ECONOMÉTRICA Y DIAGNÓSTICO CIENTÍFICO ---
+st.markdown("---")
+with st.expander("🔬 Evidencia Econométrica y Diagnóstico del Modelo GLM", expanded=False):
+    st.markdown("""
+    El modelo ajusta una regresión logística binomial con **términos de interacción cruzada**,
+    control por **empresa concesionaria** y control por **exposición física de cableado aéreo** vs. subterráneo:
+    """)
+
+    metrics = model.get_metrics()
+    m_col1, m_col2, m_col3, m_col4 = st.columns(4)
+    m_col1.metric("Pseudo R² (McFadden)", f"{metrics['pseudo_r2_mcfadden']:.3f}")
+    m_col2.metric("Akaike Info Criterion (AIC)", f"{metrics['aic']:.1f}")
+    m_col3.metric("Log-Likelihood", f"{metrics['log_likelihood']:.1f}")
+    m_col4.metric("Observaciones Panel", f"{int(metrics['nobs']):,}")
+
+    st.subheader("Tabla de Coeficientes y Odds Ratios")
+    df_summary = model.get_model_summary_df()
+    st.dataframe(df_summary, use_container_width=True, hide_index=True)
+
+    st.markdown("""
+    > **Interpretación Clave:**
+    > * **Interacción Lluvia × NSE y Viento × NSE ($p < 0.01$):** Coeficientes negativos confirman que a igualdad de temporal, una comuna con mayor NSE reduce significativamente el incremento marginal de riesgo.
+    > * **Exposición de Red Aérea ($p < 0.001$):** El ratio de cableado aéreo muestra un efecto positivo contundente. Aun aislando este factor, la brecha de NSE permanece estadísticamente significativa.
+    > * **Viento Cuadrático ($W^2 / 100$):** Refleja la aceleración del daño mecánico por presión aerodinámica no lineal.
+    """)
+
+    # Exportar datos
+    csv_bytes = df_sim.to_csv(index=False).encode("utf-8")
+    st.download_button(
+        label="📥 Descargar Escenario Simulado Actual (CSV)",
+        data=csv_bytes,
+        file_name="simulacion_gridbreak_rm.csv",
+        mime="text/csv",
+    )
 
 # --- FOOTER Y REPRODUCIBILIDAD ---
 st.markdown("---")

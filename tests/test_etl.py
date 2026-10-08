@@ -31,6 +31,11 @@ def test_rm_comunas_metadata() -> None:
     assert "comuna_nombre" in df_meta.columns
     assert "nse_score" in df_meta.columns
     assert "empresa" in df_meta.columns
+    assert "red_aerea_km_ratio" in df_meta.columns
+    assert "es_rural" in df_meta.columns
+
+    # Validar que los ratios de red aérea estén en rango físico [0, 1]
+    assert df_meta["red_aerea_km_ratio"].between(0.0, 1.0).all()
 
     # Validar que existan comunas de ENEL y CGE
     empresas = set(df_meta["empresa"].unique())
@@ -45,4 +50,6 @@ def test_generate_benchmark_storm_dataset() -> None:
     assert "evento" in df_storm.columns
     assert "precip_acumulada_mm" in df_storm.columns
     assert "rafaga_max_kmh" in df_storm.columns
+    assert "rafaga_cuadratica" in df_storm.columns
+    assert "red_aerea_km_ratio" in df_storm.columns
     assert "es_corte_critico" in df_storm.columns

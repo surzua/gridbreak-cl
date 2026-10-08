@@ -448,7 +448,60 @@ def get_rm_comunas_metadata() -> pd.DataFrame:
         "pobreza_multidimensional",
         "arbolado_m2_hab",
     ]
-    return pd.DataFrame(comunas_data, columns=cols)
+    df = pd.DataFrame(comunas_data, columns=cols)
+
+    # Identificación de comunas rurales o periurbanas de la RM
+    rurales = {
+        "San José de Maipo",
+        "Pirque",
+        "Paine",
+        "Buin",
+        "Til Til",
+        "Melipilla",
+        "Talagante",
+        "Peñaflor",
+        "Colina",
+        "Lampa",
+    }
+    df["es_rural"] = df["comuna_nombre"].isin(rurales)
+
+    # Estimación calibrada de red aérea (proporción de líneas aéreas vs subterráneas)
+    aerial_overrides: dict[str, float] = {
+        "Vitacura": 0.28,
+        "Las Condes": 0.34,
+        "Providencia": 0.38,
+        "Lo Barnechea": 0.44,
+        "La Reina": 0.48,
+        "Santiago": 0.52,
+        "Ñuñoa": 0.58,
+        "San Miguel": 0.68,
+        "La Florida": 0.74,
+        "Maipú": 0.77,
+        "Puente Alto": 0.82,
+        "Pudahuel": 0.84,
+        "Quilicura": 0.83,
+        "Renca": 0.88,
+        "San Ramón": 0.90,
+        "Cerro Navia": 0.91,
+        "Lo Espejo": 0.92,
+        "La Pintana": 0.93,
+        "San José de Maipo": 0.96,
+        "Til Til": 0.97,
+        "Paine": 0.95,
+        "Melipilla": 0.94,
+    }
+
+    def _calc_aerial_ratio(row: pd.Series) -> float:
+        name = str(row["comuna_nombre"])
+        if name in aerial_overrides:
+            return aerial_overrides[name]
+        base = 0.78 - 0.12 * float(row["nse_score"])
+        if bool(row["es_rural"]):
+            base += 0.14
+        return float(np.clip(base, 0.25, 0.98))
+
+    df["red_aerea_km_ratio"] = df.apply(_calc_aerial_ratio, axis=1).round(2)
+    return df
 
 
 def generate_benchmark_storm_dataset(seed: int = 42) -> pd.DataFrame:
@@ -491,29 +544,38 @@ def generate_benchmark_storm_dataset(seed: int = 42) -> pd.DataFrame:
 
             for _, com in comunas.iterrows():
                 # Variabilidad meteorológica local según posición geográfica
-                dist_factor = 1.0 + 0.15 * (com["lat"] - (-33.45))
+                dist_factor = 1.0 + 0.15 * (float(com["lat"]) - (-33.45))
                 precip_acum = max(
                     0.0,
-                    event["rain_peak_mm"] * progress * dist_factor + rng.normal(0, 2),
+                    float(event["rain_peak_mm"]) * progress * dist_factor
+                    + rng.normal(0, 2),
                 )
                 rafaga_max = max(
                     10.0,
-                    event["wind_peak_kmh"] * progress * (1.0 + rng.normal(0, 0.08)),
+                    float(event["wind_peak_kmh"])
+                    * progress
+                    * (1.0 + rng.normal(0, 0.08)),
                 )
+                rafaga_cuad = (rafaga_max**2) / 100.0
 
-                # Fragilidad y respuesta de red según vulnerabilidad comunal
-                # Menor NSE -> mayor fragilidad ante lluvia y ráfagas
+                # Fragilidad y respuesta de red según vulnerabilidad comunal y física de red
                 es_cge = 1.0 if com["empresa"] == "CGE" else 0.0
+                es_rural = 1.0 if bool(com["es_rural"]) else 0.0
+                red_aerea = float(com["red_aerea_km_ratio"])
+
                 logit = (
-                    -3.8
-                    + 0.075 * precip_acum
-                    + 0.052 * rafaga_max
-                    - 0.85 * com["nse_score"]
-                    - 0.022 * (precip_acum * com["nse_score"])
-                    - 0.016 * (rafaga_max * com["nse_score"])
+                    -4.2
+                    + 0.072 * precip_acum
+                    + 0.038 * rafaga_max
+                    + 0.024 * rafaga_cuad  # Presión aerodinámica cuadrática
+                    - 0.72 * float(com["nse_score"])
+                    - 0.018 * (precip_acum * float(com["nse_score"]))
+                    - 0.014 * (rafaga_max * float(com["nse_score"]))
+                    + 1.40 * (red_aerea - 0.70)  # Mayor exposición de cableado aéreo
                     + 0.35 * es_cge
-                    + 0.03 * com["arbolado_m2_hab"]
-                    + rng.normal(0, 0.3)
+                    + 0.03 * float(com["arbolado_m2_hab"])
+                    + 0.25 * es_rural
+                    + rng.normal(0, 0.25)
                 )
 
                 prob_corte = 1.0 / (1.0 + np.exp(-logit))
@@ -522,7 +584,9 @@ def generate_benchmark_storm_dataset(seed: int = 42) -> pd.DataFrame:
                 tasa_afectacion = float(
                     np.clip(prob_corte * rng.uniform(0.08, 0.28), 0.0, 0.95)
                 )
-                clientes_sin_suministro = int(tasa_afectacion * com["clientes_totales"])
+                clientes_sin_suministro = int(
+                    tasa_afectacion * int(com["clientes_totales"])
+                )
                 es_corte_critico = int(tasa_afectacion >= 0.05)
 
                 records.append(
@@ -538,12 +602,15 @@ def generate_benchmark_storm_dataset(seed: int = 42) -> pd.DataFrame:
                         "ingreso_autonomo_promedio": com["ingreso_autonomo_promedio"],
                         "pobreza_multidimensional": com["pobreza_multidimensional"],
                         "arbolado_m2_hab": com["arbolado_m2_hab"],
+                        "red_aerea_km_ratio": red_aerea,
+                        "es_rural": int(es_rural),
                         "clientes_totales": com["clientes_totales"],
                         "clientes_sin_suministro": clientes_sin_suministro,
                         "tasa_afectacion": tasa_afectacion,
                         "es_corte_critico": es_corte_critico,
                         "precip_acumulada_mm": round(precip_acum, 1),
                         "rafaga_max_kmh": round(rafaga_max, 1),
+                        "rafaga_cuadratica": round(rafaga_cuad, 2),
                     }
                 )
 

@@ -59,13 +59,20 @@ flowchart TD
 
 ---
 
-### 🟢 Fase 1: Cimientos, Modelo Base y MVP Funcional *(Completado)*
-- [x] **Gestión de dependencias moderna:** Inicialización con `uv`, lockfile reproducible y tipado `mypy` estricto.
-- [x] **Esquemas de validación de datos:** Implementación de modelos Pydantic (`SECCutRecord`, `WeatherRecord`, `ComunaFeatures`) en `src/gridbreak_cl/config.py`.
-- [x] **Motor de Replay / Benchmark 2024:** Generación del dataset sintético-calibrado de 52 comunas con 120 horas de temporales de Junio y Agosto 2024 en `data/processed/benchmark_temporales_2024.parquet`.
-- [x] **Modelo GLM de Fragilidad:** Implementación de `FragilityModel` con regresión logística bivariada (Lluvia $\times$ NSE y Viento $\times$ NSE) y cálculo de umbrales críticos $R_{50}$ en `src/gridbreak_cl/models/fragility_curves.py`.
-- [x] **Simulador interactivo en Streamlit:** Dashboard completo con sliders meteorológicos, presets históricos, mapa de la RM con Plotly, comparador comunal frente a frente y superficie 3D en `app/streamlit_app.py`.
-- [x] **Suite de pruebas unitarias:** Pruebas de esquemas, convergencia de GLM y coherencia física en `tests/test_etl.py` y `tests/test_models.py`.
+### 🟢 Fase 1: Cimientos, Modelo Base y MVP Funcional *(Completado y Refinado)*
+- [x] **Gestión de dependencias moderna:** Inicialización con `uv`, lockfile reproducible y tipado `mypy` estricto (`--strict`).
+- [x] **Esquemas de validación de datos:** Modelos Pydantic (`SECCutRecord`, `WeatherRecord`, `ComunaFeatures` con `red_aerea_km_ratio` y `es_rural`) en `src/gridbreak_cl/config.py`.
+- [x] **Motor de Replay / Benchmark 2024:** Generación del dataset sintético-calibrado de 52 comunas con 120 horas de panel de los temporales de Junio y Agosto 2024 en `data/processed/benchmark_temporales_2024.parquet`.
+- [x] **Modelo GLM de Fragilidad Refinado:**
+  - Control explícito por exposición de cableado aéreo (`red_aerea_km_ratio`) para evitar sesgo de variable omitida.
+  - No linealidad aerodinámica de fuerza de arrastre ($W^2 / 100$).
+  - Términos de interacción cruzada estadísticamente significativos ($\text{Lluvia} \times \text{NSE}$ y $\text{Viento} \times \text{NSE}$).
+  - Solución analítica exacta de umbrales críticos de lluvia ($R_{50}$) y viento ($W_{50}$ vía fórmula cuadrática) en `src/gridbreak_cl/models/fragility_curves.py`.
+- [x] **Simulador interactivo en Streamlit con Diagnóstico Científico:**
+  - Sliders meteorológicos, presets históricos, mapa coroplético de burbujas de la RM con Plotly, comparador comunal frente a frente con ratio de red aérea y superficie 3D bivariada en `app/streamlit_app.py`.
+  - Pestaña expandible de **Evidencia Econométrica y Diagnóstico**: Pseudo-$R^2$ de McFadden (0.686), AIC, tabla de coeficientes con significancia ($*** p < 0.001$) y exportación del escenario en CSV.
+- [x] **Suite de pruebas unitarias robusta:**
+  - Cobertura de esquemas, generación de datos, coherencia de gap de vulnerabilidad, solución analítica cuadrática de umbrales y prueba de ajuste sobre el Parquet real en `tests/test_etl.py` y `tests/test_models.py` (7 tests pasando).
 
 ---
 

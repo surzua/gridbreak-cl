@@ -52,6 +52,7 @@ class ComunaFeatures(BaseModel):
     arbolado_m2_hab: float = Field(ge=0.0)
     red_aerea_km_ratio: float = Field(ge=0.0, le=1.0)
     densidad_clientes_km: float = Field(ge=0.0)
+    es_rural: bool = False
 
 
 def get_project_root() -> Path:
