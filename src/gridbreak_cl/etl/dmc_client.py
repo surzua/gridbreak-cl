@@ -102,11 +102,19 @@ class DMCWeatherClient:
     def _fetch_from_open_meteo(
         self, lat: float, lon: float
     ) -> tuple[float, float, float]:
-        """Consulta variables meteorológicas en vivo para una coordenada dada en Chile."""
-        params = {
+        """Consulta variables meteorológicas en vivo para una coordenada dada en Chile.
+
+        Calcula la precipitación acumulada de las últimas 24 horas y la ráfaga máxima
+        registrada en dicho intervalo para reflejar el impacto del evento climático
+        en la red eléctrica.
+        """
+        params: dict[str, str] = {
             "latitude": str(lat),
             "longitude": str(lon),
             "current": "precipitation,wind_speed_10m,wind_gusts_10m",
+            "hourly": "precipitation,wind_speed_10m,wind_gusts_10m",
+            "past_days": "1",
+            "forecast_days": "1",
             "timezone": "America/Santiago",
         }
         delay = 1.0
@@ -123,10 +131,25 @@ class DMCWeatherClient:
                 resp.raise_for_status()
                 data = resp.json()
                 current = data.get("current", {})
+                hourly = data.get("hourly", {})
 
-                precip = float(current.get("precipitation", 0.0) or 0.0)
+                # 1. Precipitación acumulada en las últimas 24 horas
+                hourly_precip = hourly.get("precipitation", [])
+                if hourly_precip and len(hourly_precip) >= 24:
+                    precip = float(sum(hourly_precip[-24:]))
+                else:
+                    precip = float(current.get("precipitation", 0.0) or 0.0)
+
+                # 2. Viento medio actual
                 wind = float(current.get("wind_speed_10m", 0.0) or 0.0)
-                gust = float(current.get("wind_gusts_10m", 0.0) or wind * 1.3)
+
+                # 3. Ráfaga máxima (máxima entre las últimas 24h y la actual)
+                hourly_gusts = hourly.get("wind_gusts_10m", [])
+                curr_gust = float(current.get("wind_gusts_10m", 0.0) or wind * 1.3)
+                if hourly_gusts and len(hourly_gusts) >= 24:
+                    gust = max(curr_gust, float(max(hourly_gusts[-24:])))
+                else:
+                    gust = curr_gust
 
                 return max(0.0, precip), max(0.0, wind), max(0.0, gust)
             except Exception as e:

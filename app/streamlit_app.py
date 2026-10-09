@@ -750,8 +750,8 @@ else:
         delta="Estable" if comunas_criticas == 0 else "Alerta Masiva",
         delta_color="normal" if comunas_criticas == 0 else "inverse",
     )
-    lc3.metric("🌧️ Lluvia Media RM", f"{lluvia_promedio:.1f} mm")
-    lc4.metric("💨 Ráfaga Máxima RM", f"{rafaga_max_rm:.1f} km/h")
+    lc3.metric("🌧️ Lluvia Media RM (24h)", f"{lluvia_promedio:.1f} mm")
+    lc4.metric("💨 Ráfaga Máxima RM (24h)", f"{rafaga_max_rm:.1f} km/h")
 
     st.markdown("---")
 
